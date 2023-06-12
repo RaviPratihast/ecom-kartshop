@@ -1,5 +1,5 @@
 import "./App.css";
-import { Navigation } from "./components/component-index";
+import { Navigation, Button } from "./components/component-index";
 function App() {
   return (
     <div className="App">
@@ -17,6 +17,7 @@ function App() {
           Learn React
         </a> */}
         <Navigation />
+        <Button />
       </header>
     </div>
   );
