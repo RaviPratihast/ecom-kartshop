@@ -1,7 +1,7 @@
 import React from "react";
 
-function Navigation() {
+const Navigation = () => {
   return <div>navigation</div>;
-}
+};
 
 export { Navigation };

@@ -1,7 +1,7 @@
 import React from "react";
 
-function Card() {
+const Card = () => {
   return <div>Card</div>;
-}
+};
 
 export { Card };
