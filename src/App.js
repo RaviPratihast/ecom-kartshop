@@ -1,5 +1,5 @@
 import "./App.css";
-import { Navigation, Button } from "./components/component-index";
+import { Navigation, Button, Card } from "./components/component-index";
 function App() {
   return (
     <div className="App">
@@ -18,6 +18,7 @@ function App() {
         </a> */}
         <Navigation />
         <Button />
+        <Card />
       </header>
     </div>
   );
