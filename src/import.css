@@ -1,4 +1,5 @@
 @import url(/src/reset.css);
+@import url(/src/colors.css);
 @import url(/src/components/button/button.css);
 @import url(/src/components/card/card.css);
 @import url(/src/pages/home-page/home.css);
