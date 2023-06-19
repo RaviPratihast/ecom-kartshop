@@ -24,13 +24,13 @@ function App() {
               <h1> KS</h1>
             </NavLink>
             <NavLink style={getActiveStyle} to="/shop">
-              <i class="material-icons">explore</i>
+              <i className="material-icons">explore</i>
             </NavLink>
             <NavLink style={getActiveStyle} to="/wishlist">
-              <i class="material-icons">favorite</i>
+              <i className="material-icons">favorite</i>
             </NavLink>
             <NavLink style={getActiveStyle} to="/cart">
-              <i class="material-icons">shopping_cart</i>
+              <i className="material-icons">shopping_cart</i>
             </NavLink>
           </nav>
 
@@ -40,10 +40,10 @@ function App() {
                 className="input nav-search-input"
                 placeholder="Search.."
               />
-              <i class="material-icons search-icon icon">search</i>
+              <i className="material-icons search-icon icon">search</i>
             </div>
             <div className="nav-login">
-              <i class="material-icons">login</i>
+              <i className="material-icons">login</i>
             </div>
           </div>
         </div>

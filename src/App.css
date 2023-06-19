@@ -1,33 +1,44 @@
 @import url(/src/import.css);
 .App-header {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  /* background-color: var(--primary-color); */
+  /* color: var(--secondary-color); */
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 2;
+  /* z-index: 2; */
+  /* border: 1px solid rgb(111, 194, 98); */
+  margin: 0 auto;
 }
 
 .nav-container {
-  width: 95%;
-  max-width: 1160px;
+  /* width: 95%; */
+  /* max-width: 1160px; */
   height: 4rem;
-  margin: 0 auto;
+  /* width: 100%; */
+  /* margin: 0 auto; */
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
+  /* border: 1px solid rgb(205, 80, 80); */
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  /* position: fixed;
+  top: 0; */
 }
-.nav-container > .menu-icon {
+/* .nav-container > .menu-icon {
   margin-left: 1em;
-}
+} */
 .nav-container > .nav-links {
   display: flex;
   gap: 1.5em;
-  color: white;
+  color: rgb(11, 10, 10);
   justify-content: space-between;
   align-items: center;
   margin-left: 0.5em;
   min-width: 25em;
+  width: 30rem;
+  margin-left: 3em;
+  border: 1px solid pink;
 }
 
 .nav-container > .nav-search-login {
@@ -36,7 +47,8 @@
   justify-content: space-between;
   height: 2.5em;
   width: 30em;
-  margin-right: 0.5rem;
+  /* margin-right: 0.5rem; */
+  border: 1px solid rgb(173, 81, 81);
 }
 .nav-container .nav-search {
   display: flex;
@@ -56,11 +68,11 @@
   padding-left: 0.4em;
   font-size: inherit;
 }
-.icon {
+/* .icon {
   color: var(--primary-color);
-}
+} */
 
-@media (max-width: 770px) {
+/* @media (max-width: 770px) {
   .nav-container {
     flex-direction: column;
     align-items: center;
@@ -71,9 +83,9 @@
   .nav-container > .nav-search {
     margin: 0 auto;
   }
-}
+} */
 
-@media (max-width: 560px) {
+/* @media (max-width: 560px) {
   .nav-container {
     flex-direction: column;
   }
@@ -84,11 +96,11 @@
     margin: 0 auto;
     width: 100%;
   }
-}
+} */
 
-@media (max-width: 375px) {
+/* @media (max-width: 375px) {
   .nav-container {
     justify-content: center;
     align-items: center;
   }
-}
+} */
