@@ -5,4 +5,15 @@
   --red-color: #dc2626;
   --yellow: #fcd34d;
   --blue: #0ea5e9;
+  --shadow-color: 0deg 0% 53%;
+  --shadow-elevation-low: -0.7px 0px 1px hsl(var(--shadow-color) / 0.14),
+    -3.3px 0px 4.7px -0.5px hsl(var(--shadow-color) / 0.66);
+  --shadow-elevation-medium: -0.7px 0px 1px hsl(var(--shadow-color) / 0.14),
+    -5.3px 0.1px 7.5px -0.3px hsl(var(--shadow-color) / 0.46),
+    -16.5px 0.2px 23.4px -0.5px hsl(var(--shadow-color) / 0.78);
+  --shadow-elevation-high: -0.7px 0px 1px hsl(var(--shadow-color) / 0.15),
+    -13.6px 0.2px 19.3px -0.1px hsl(var(--shadow-color) / 0.36),
+    -27.5px 0.3px 39px -0.3px hsl(var(--shadow-color) / 0.58),
+    -50.8px 0.6px 72px -0.4px hsl(var(--shadow-color) / 0.79),
+    -92.3px 1.1px 130.8px -0.5px hsl(var(--shadow-color) / 1);
 }
