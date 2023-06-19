@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-// import "/image/laptopbag.webp"
+
 const items = [
   {
     id: uuid(),
