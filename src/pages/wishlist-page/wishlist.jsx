@@ -28,7 +28,9 @@ const Wishlist = () => {
                     Add To Cart
                   </Button>
                   <Button onClick={() => console.log("hey")}>
-                    <span class="material-icons favorite-icon">favorite</span>
+                    <span className="material-icons favorite-icon">
+                      favorite
+                    </span>
                   </Button>
                 </div>
               </Card>
