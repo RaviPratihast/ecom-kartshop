@@ -22,7 +22,7 @@ const Card = ({
             <h3 className="card-name">{name}</h3>
           </div>
           <div className="ratings-container">
-            <i class="material-icons">grade</i>
+            <i className="material-icons">grade</i>
             <span className="card-rating">{rating}</span>
           </div>
         </div>
