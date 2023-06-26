@@ -3,7 +3,7 @@ import { useProduct } from "../../context/ecom-context";
 import { Button, Card } from "../../components/component-index";
 
 const Shop = () => {
-  const { state } = useProduct();
+  const { state, dispatch } = useProduct();
   return (
     <div className="filter-product-container">
       <div className="filters-container">
@@ -12,11 +12,7 @@ const Shop = () => {
             <h3>Filters</h3>
 
             {/* there will one button that will remove if any filter is applied */}
-            <Button
-            // onClick={() => dispatch({ type: "CLEAR_FILTER" })}
-            >
-              Clear
-            </Button>
+            <Button onClick={() => console.log("hello dispatch")}>Clear</Button>
           </div>
         </div>
         <div className="price-filter">
@@ -39,8 +35,8 @@ const Shop = () => {
           <label>Sort By</label>
           <div className="sort-filter-button-container">
             <Button
-            // className="card-add-to-cart-button sort-button"
-            // onClick={() => dispatch({ type: "HIGH_TO_LOW" })}
+              // className="card-add-to-cart-button sort-button"
+              onClick={() => dispatch({ type: "HIGH_TO_LOW" })}
             >
               Price-High to low
             </Button>
@@ -95,14 +91,18 @@ const Shop = () => {
                 label="product"
               >
                 <div className="add-cart-wishlist-container">
-                  <Button onClick={() => console.log("hey")}>
+                  <Button
+                    onClick={() =>
+                      dispatch({ type: "ADD_TO_CART", payload: id })
+                    }
+                  >
                     Add To Cart
                   </Button>
-                  <Button onClick={() => console.log("hey")}>
+                  {/* <Button onClick={() => console.log("hey")}>
                     <span className="material-icons favorite-icon">
                       favorite
                     </span>
-                  </Button>
+                  </Button> */}
                 </div>
               </Card>
             );
