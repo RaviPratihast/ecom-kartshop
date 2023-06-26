@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/component-index";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className="home-page">
       <div className="image-container">
@@ -17,7 +19,7 @@ const Home = () => {
             </h1>
             <p>Shop everything you want.</p>
           </div>
-          <Button>Explore more</Button>
+          <Button onClick={() => navigate("/shop")}>Explore more</Button>
         </div>
       </div>
     </div>
