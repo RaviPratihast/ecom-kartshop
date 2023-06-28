@@ -1,6 +1,8 @@
 import {
   createContext,
   useContext,
+  useEffect,
+  useState,
   useReducer,
   //   useState,
   //   useEffect,
@@ -8,6 +10,7 @@ import {
 // import axios from "axios";
 import { items } from "../items";
 import { reducer } from "../reducers/reducer";
+
 // import { reducer } from "../reducers/reducer";
 
 // creating the context
@@ -29,9 +32,18 @@ let initialState = {
 
 const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [subTotal, setSubTotal] = useState(0);
+
+  useEffect(() => {
+    const subTotalOfCartCalc = state.cart.reduce(
+      (acc, curr) => acc + curr.totalProductPrice,
+      0
+    );
+    setSubTotal(subTotalOfCartCalc);
+  }, [state.cart]);
 
   return (
-    <ProductContext.Provider value={{ state, dispatch }}>
+    <ProductContext.Provider value={{ state, dispatch, subTotal }}>
       {children}
     </ProductContext.Provider>
   );

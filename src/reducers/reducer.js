@@ -17,19 +17,35 @@ export function reducer(state, action) {
               ? {
                   ...cartItem,
                   qty: cartItem.qty + 1,
+                  totalProductPrice: (cartItem.qty + 1) * cartItem.price,
                 }
               : cartItem;
           }),
+          // subTotalOfCart: state.cart.reduce(
+          //   (acc, curr) => acc + curr.totalProductPrice,
+          //   0
+          // ),
         };
       }
 
       const productToBeAdded = state.product.find((product) => {
         return product.id === action.payload;
       });
-
+      // const subTotalOfCartCalc = state.cart.reduce(
+      //   (acc, curr) => acc + curr.totalProductPrice,
+      //   0
+      // );
       return {
         ...state,
-        cart: [...state.cart, { ...productToBeAdded, qty: 1 }],
+        cart: [
+          ...state.cart,
+          {
+            ...productToBeAdded,
+            qty: 1,
+            totalProductPrice: 1 * productToBeAdded.price,
+          },
+        ],
+        // subTotalOfCart: subTotalOfCartCalc,
         // subTotalOfCart: state.cart.reduce((acc, curr) => acc + curr.totalItemPrice, 0),
       };
     case "DECREMENT_QTY":
@@ -40,6 +56,7 @@ export function reducer(state, action) {
             ? {
                 ...cartItem,
                 qty: cartItem.qty - 1,
+                totalProductPrice: (cartItem.qty - 1) * cartItem.price,
               }
             : cartItem
         ),
@@ -48,6 +65,11 @@ export function reducer(state, action) {
       return {
         ...state,
         cart: state.cart.filter((cartItem) => cartItem.id !== action.payload),
+      };
+    case "CLEAR_CART":
+      return {
+        ...state,
+        cart: [],
       };
 
     // case "HIGH_TO_LOW":

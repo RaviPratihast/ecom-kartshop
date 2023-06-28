@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useProduct } from "../../context/ecom-context";
 import { Button, Card } from "../../components/component-index";
 const Cart = () => {
-  const { state, dispatch } = useProduct();
-  console.log(state.cart);
+  const { state, dispatch, subTotal } = useProduct();
+  console.log(state);
   return (
     <div className="cart-container">
       <div className="cart-items-container">
         {state.cart.map(
-          ({ id, name, rating, image, originalPrice, price, qty }) => {
+          ({
+            id,
+            name,
+            rating,
+            image,
+            originalPrice,
+            price,
+            qty,
+            totalProductPrice,
+          }) => {
             return (
               <Card
                 key={id}
@@ -20,6 +29,7 @@ const Cart = () => {
                 price={price}
                 label="product"
               >
+                {/* <span>total:{totalProductPrice}</span> */}
                 <div className="qty-counter-container">
                   <Button
                     onClick={() =>
@@ -58,10 +68,12 @@ const Cart = () => {
       </div>
       <div className="proceed-to-payment-container">
         <p>
-          Sub Total (<span>4</span>)items: Rs 1000
+          Sub Total (<span>{state.cart.length}</span>)items: Rs {subTotal}
         </p>
         <Button onClick={() => console.log("hey")}>Proceed To payment</Button>
-        <Button onClick={() => console.log("hey")}>ClearYour Cart</Button>
+        <Button onClick={() => dispatch({ type: "CLEAR_CART" })}>
+          Clear Your Cart
+        </Button>
       </div>
     </div>
   );
