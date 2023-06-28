@@ -22,13 +22,15 @@ const Cart = () => {
               >
                 <span>qty:{qty}</span>
                 <div className="add-cart-wishlist-container">
-                  <Button
-                    onClick={() =>
-                      dispatch({ type: "REMOVE_FROM_CART", payload: id })
-                    }
-                  >
-                    <span className="material-icons">delete</span>
-                  </Button>
+                  <div className="button-delete">
+                    <Button
+                      onClick={() =>
+                        dispatch({ type: "REMOVE_FROM_CART", payload: id })
+                      }
+                    >
+                      <span className="material-icons">delete</span>
+                    </Button>
+                  </div>
                   {/* <Button onClick={() => console.log("hey")}>
                     <span className="material-icons favorite-icon">favorite</span>
                   </Button> */}

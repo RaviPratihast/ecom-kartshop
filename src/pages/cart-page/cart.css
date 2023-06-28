@@ -42,3 +42,8 @@
   display: flex;
   gap: 2em;
 }
+.button-delete {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
