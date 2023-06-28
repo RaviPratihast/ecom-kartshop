@@ -1,6 +1,4 @@
 export function reducer(state, action) {
-  // this function will test the item present in the array.
-  // console.log("hello");
   function itemIsPresent(arr) {
     return arr.some((arrItem) => {
       return arrItem.id === action.payload;
@@ -21,20 +19,12 @@ export function reducer(state, action) {
                 }
               : cartItem;
           }),
-          // subTotalOfCart: state.cart.reduce(
-          //   (acc, curr) => acc + curr.totalProductPrice,
-          //   0
-          // ),
         };
       }
 
       const productToBeAdded = state.product.find((product) => {
         return product.id === action.payload;
       });
-      // const subTotalOfCartCalc = state.cart.reduce(
-      //   (acc, curr) => acc + curr.totalProductPrice,
-      //   0
-      // );
       return {
         ...state,
         cart: [
@@ -45,8 +35,6 @@ export function reducer(state, action) {
             totalProductPrice: 1 * productToBeAdded.price,
           },
         ],
-        // subTotalOfCart: subTotalOfCartCalc,
-        // subTotalOfCart: state.cart.reduce((acc, curr) => acc + curr.totalItemPrice, 0),
       };
     case "DECREMENT_QTY":
       return {
@@ -72,16 +60,7 @@ export function reducer(state, action) {
         cart: [],
       };
 
-    // case "HIGH_TO_LOW":
-    //   const sortedHighToLow = [...state.product].sort(
-    //     (a, b) => b.price - a.price
-    //   );
-    //   return {
-    //     ...state,
-    //     product: sortedHighToLow,
-    //   };
     default:
       return state;
   }
-  // console.log(state.cart);
 }
