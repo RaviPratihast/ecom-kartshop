@@ -20,31 +20,37 @@ const Cart = () => {
                 price={price}
                 label="product"
               >
-                <span>qty:{qty}</span>
-                <div className="add-cart-wishlist-container">
-                  <div className="button-delete">
-                    <Button
-                      onClick={() =>
-                        dispatch({ type: "REMOVE_FROM_CART", payload: id })
-                      }
-                    >
-                      <span className="material-icons">delete</span>
-                    </Button>
-                  </div>
-                  {/* <Button onClick={() => console.log("hey")}>
-                    <span className="material-icons favorite-icon">favorite</span>
-                  </Button> */}
+                <div className="qty-counter-container">
+                  <Button
+                    onClick={() =>
+                      dispatch({ type: "DECREMENT_QTY", payload: id })
+                    }
+                  >
+                    -
+                  </Button>
+                  <span className="qty-container">{qty}</span>
+                  <Button
+                    onClick={() =>
+                      dispatch({ type: "ADD_TO_CART", payload: id })
+                    }
+                  >
+                    +
+                  </Button>
                 </div>
-                {/* <div className="cart-icons">
-                  <Button onClick={() => console.log("hey")}>
-                    <span className="material-icons delete-icon">delete</span>
+                <div className="button-container">
+                  <Button
+                    onClick={() =>
+                      dispatch({ type: "REMOVE_FROM_CART", payload: id })
+                    }
+                  >
+                    <span className="material-icons">delete</span>
                   </Button>
                   <Button onClick={() => console.log("hey")}>
                     <span className="material-icons favorite-icon">
                       favorite
                     </span>
                   </Button>
-                </div> */}
+                </div>
               </Card>
             );
           }

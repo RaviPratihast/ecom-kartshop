@@ -32,6 +32,18 @@ export function reducer(state, action) {
         cart: [...state.cart, { ...productToBeAdded, qty: 1 }],
         // subTotalOfCart: state.cart.reduce((acc, curr) => acc + curr.totalItemPrice, 0),
       };
+    case "DECREMENT_QTY":
+      return {
+        ...state,
+        cart: state.cart.map((cartItem) =>
+          cartItem.id === action.payload && cartItem.qty > 1
+            ? {
+                ...cartItem,
+                qty: cartItem.qty - 1,
+              }
+            : cartItem
+        ),
+      };
     case "REMOVE_FROM_CART":
       return {
         ...state,

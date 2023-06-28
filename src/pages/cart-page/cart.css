@@ -42,8 +42,27 @@
   display: flex;
   gap: 2em;
 }
-.button-delete {
+.qty-counter-container {
+  display: flex;
+  gap: 0.3em;
+}
+.qty-container {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 0.5em; */
+  height: 2.2em;
+  width: 2em;
+  text-align: center;
+  font-size: 1em;
+  font-weight: 500;
+}
+.button-container {
   position: absolute;
   top: 1em;
   right: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
 }
