@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useProduct } from "../../context/ecom-context";
 import { Button, Card } from "../../components/component-index";
 const Cart = () => {
@@ -8,16 +8,7 @@ const Cart = () => {
     <div className="cart-container">
       <div className="cart-items-container">
         {state.cart.map(
-          ({
-            id,
-            name,
-            rating,
-            image,
-            originalPrice,
-            price,
-            qty,
-            totalProductPrice,
-          }) => {
+          ({ id, name, rating, image, originalPrice, price, qty }) => {
             return (
               <Card
                 key={id}
@@ -29,7 +20,6 @@ const Cart = () => {
                 price={price}
                 label="product"
               >
-                {/* <span>total:{totalProductPrice}</span> */}
                 <div className="qty-counter-container">
                   <Button
                     onClick={() =>
