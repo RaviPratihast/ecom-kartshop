@@ -7,6 +7,7 @@ import {
 } from "react";
 // import axios from "axios";
 import { items } from "../items";
+import { reducer } from "../reducers/reducer";
 // import { reducer } from "../reducers/reducer";
 
 // creating the context
@@ -27,7 +28,7 @@ let initialState = {
 };
 
 const ProductProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(() => {}, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <ProductContext.Provider value={{ state, dispatch }}>

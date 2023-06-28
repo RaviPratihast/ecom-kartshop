@@ -32,6 +32,11 @@ export function reducer(state, action) {
         cart: [...state.cart, { ...productToBeAdded, qty: 1 }],
         // subTotalOfCart: state.cart.reduce((acc, curr) => acc + curr.totalItemPrice, 0),
       };
+    case "REMOVE_FROM_CART":
+      return {
+        ...state,
+        cart: state.cart.filter((cartItem) => cartItem.id !== action.payload),
+      };
 
     // case "HIGH_TO_LOW":
     //   const sortedHighToLow = [...state.product].sort(
