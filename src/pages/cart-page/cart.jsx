@@ -64,7 +64,12 @@ const Cart = () => {
           Sub Total (<span>{state.cart.length}</span>)items: Rs {subTotal}
         </p>
         <Button onClick={() => console.log("hey")}>Proceed To payment</Button>
-        <Button onClick={() => dispatch({ type: "CLEAR_CART" })}>
+        <Button
+          onClick={() => {
+            dispatch({ type: "CLEAR_CART" });
+            toast.success("Cart Items Removed!");
+          }}
+        >
           Clear Your Cart
         </Button>
       </div>
