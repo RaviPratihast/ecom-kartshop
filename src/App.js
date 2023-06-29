@@ -2,7 +2,8 @@ import "./App.css";
 import React from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
 import { Cart, Home, Login, Shop, SignIn, Wishlist } from "./pages/page-index";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const getActiveStyle = ({ isActive }) => {
   return {
     display: "flex",
@@ -59,6 +60,7 @@ function App() {
           <Route path="/signIn" element={<SignIn />} />
         </Routes>
       </main>
+      <ToastContainer autoClose={700} />
     </div>
   );
 }

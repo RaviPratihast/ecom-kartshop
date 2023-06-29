@@ -1,6 +1,8 @@
 import React from "react";
 import { useProduct } from "../../context/ecom-context";
 import { Button, Card } from "../../components/component-index";
+import { toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 const Cart = () => {
   const { state, dispatch, subTotal } = useProduct();
   console.log(state);
@@ -39,9 +41,10 @@ const Cart = () => {
                 </div>
                 <div className="button-container">
                   <Button
-                    onClick={() =>
-                      dispatch({ type: "REMOVE_FROM_CART", payload: id })
-                    }
+                    onClick={() => {
+                      dispatch({ type: "REMOVE_FROM_CART", payload: id });
+                      toast.success("remove from cart");
+                    }}
                   >
                     <span className="material-icons">delete</span>
                   </Button>
