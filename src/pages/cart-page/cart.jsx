@@ -2,7 +2,6 @@ import React from "react";
 import { useProduct } from "../../context/ecom-context";
 import { Button, Card } from "../../components/component-index";
 import { toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 const Cart = () => {
   const { state, dispatch, subTotal } = useProduct();
   console.log(state);
