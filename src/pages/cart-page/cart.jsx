@@ -49,9 +49,10 @@ const Cart = () => {
                     <span className="material-icons">delete</span>
                   </Button>
                   <Button
-                    onClick={() =>
-                      dispatch({ type: "ADD_TO_WISHLIST", payload: id })
-                    }
+                    onClick={() => {
+                      dispatch({ type: "ADD_TO_WISHLIST", payload: id });
+                      toast.success("Added To Wishlist");
+                    }}
                   >
                     <span className="material-icons favorite-icon">
                       favorite

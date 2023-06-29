@@ -1,7 +1,7 @@
 import React from "react";
 import { useProduct } from "../../context/ecom-context";
 import { Button, Card } from "../../components/component-index";
-
+import { toast } from "react-toastify";
 const Shop = () => {
   const { state, dispatch } = useProduct();
   return (
@@ -92,17 +92,23 @@ const Shop = () => {
               >
                 <div className="add-cart-wishlist-container">
                   <Button
-                    onClick={() =>
-                      dispatch({ type: "ADD_TO_CART", payload: id })
-                    }
+                    onClick={() => {
+                      dispatch({ type: "ADD_TO_CART", payload: id });
+                      toast.success("Added To Cart");
+                    }}
                   >
                     Add To Cart
                   </Button>
-                  {/* <Button onClick={() => console.log("hey")}>
+                  <Button
+                    onClick={() => {
+                      dispatch({ type: "ADD_TO_WISHLIST", payload: id });
+                      toast.success("Added To Wishlist");
+                    }}
+                  >
                     <span className="material-icons favorite-icon">
                       favorite
                     </span>
-                  </Button> */}
+                  </Button>
                 </div>
               </Card>
             );
