@@ -59,7 +59,27 @@ export function reducer(state, action) {
         ...state,
         cart: [],
       };
-
+    case "ADD_TO_WISHLIST":
+      const productToBeAddedToWishlist = state.product.find((product) => {
+        return product.id === action.payload;
+      });
+      if (itemIsPresent(state.wishlist)) {
+        return {
+          ...state,
+          wishlist: [...state.wishlist],
+        };
+      }
+      return {
+        ...state,
+        wishlist: [...state.wishlist, productToBeAddedToWishlist],
+      };
+    case "REMOVE_FROM_WISHLIST":
+      return {
+        ...state,
+        wishlist: state.wishlist.filter(
+          (wishlistItem) => wishlistItem.id !== action.payload
+        ),
+      };
     default:
       return state;
   }
