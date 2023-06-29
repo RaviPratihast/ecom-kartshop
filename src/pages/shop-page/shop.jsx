@@ -4,6 +4,11 @@ import { Button, Card } from "../../components/component-index";
 import { toast } from "react-toastify";
 const Shop = () => {
   const { state, dispatch } = useProduct();
+  function itemIsPresent(id) {
+    return state.wishlist.some((arrItem) => {
+      return arrItem.id === id;
+    });
+  }
   return (
     <div className="filter-product-container">
       <div className="filters-container">
@@ -101,13 +106,24 @@ const Shop = () => {
                   </Button>
                   <Button
                     onClick={() => {
-                      dispatch({ type: "ADD_TO_WISHLIST", payload: id });
-                      toast.success("Added To Wishlist");
+                      if (itemIsPresent(id)) {
+                        dispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
+                        toast.success("Item Removed From Wishlist");
+                      } else {
+                        dispatch({ type: "ADD_TO_WISHLIST", payload: id });
+                        toast.success("Added To Wishlist");
+                      }
                     }}
                   >
-                    <span className="material-icons favorite-icon">
-                      favorite
-                    </span>
+                    {itemIsPresent(id) ? (
+                      <span className="material-icons favorite-icon-active">
+                        favorite
+                      </span>
+                    ) : (
+                      <span className="material-icons favorite-icon">
+                        favorite
+                      </span>
+                    )}
                   </Button>
                 </div>
               </Card>

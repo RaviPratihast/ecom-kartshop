@@ -66,3 +66,8 @@
   flex-direction: column;
   gap: 0.4em;
 }
+
+.favorite-icon-active {
+  /* background-color: red; */
+  color: red;
+}
