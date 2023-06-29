@@ -89,8 +89,12 @@ const Cart = () => {
         <Button onClick={() => console.log("hey")}>Proceed To payment</Button>
         <Button
           onClick={() => {
-            dispatch({ type: "CLEAR_CART" });
-            toast.success("Cart Items Removed!");
+            if (state.cart.length > 0) {
+              dispatch({ type: "CLEAR_CART" });
+              toast.success("Cart Items Removed!");
+            } else if (state.cart.length === 0) {
+              toast.success("Cart is Empty");
+            }
           }}
         >
           Clear Your Cart
