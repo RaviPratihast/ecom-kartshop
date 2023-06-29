@@ -31,7 +31,10 @@ function App() {
               <i className="material-icons">favorite</i>
             </NavLink>
             <NavLink style={getActiveStyle} to="/cart">
-              <i className="material-icons">shopping_cart</i>
+              <div className="icon-container">
+                <i className="material-icons icon-shop ">shopping_cart</i>
+                <div className="badge"></div>
+              </div>
             </NavLink>
           </nav>
 
