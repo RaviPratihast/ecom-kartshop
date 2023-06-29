@@ -1,9 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useProduct } from "../../context/ecom-context";
 import { Button, Card } from "../../components/component-index";
 import { toast } from "react-toastify";
 const Wishlist = () => {
+  const navigate = useNavigate();
   const { state, dispatch } = useProduct();
+  function itemIsPresentInCart(id) {
+    return state.cart.some((cartItem) => cartItem.id === id);
+  }
   console.log(state.wishlist);
   return (
     <div className="wishlist-container">
@@ -27,11 +32,15 @@ const Wishlist = () => {
                 <div className="add-cart-wishlist-container">
                   <Button
                     onClick={() => {
-                      dispatch({ type: "ADD_TO_CART", payload: id });
-                      toast.success("Added To Cart");
+                      if (itemIsPresentInCart(id)) {
+                        navigate("/cart");
+                      } else {
+                        dispatch({ type: "ADD_TO_CART", payload: id });
+                        toast.success("Added To Cart");
+                      }
                     }}
                   >
-                    Add To Cart
+                    {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
                   </Button>
                   <Button
                     onClick={() => {
