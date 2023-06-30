@@ -1,7 +1,15 @@
 import "./App.css";
 import React from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
-import { Cart, Home, Login, Shop, SignIn, Wishlist } from "./pages/page-index";
+import {
+  Cart,
+  Home,
+  Login,
+  Shop,
+  ProductDetails,
+  SignIn,
+  Wishlist,
+} from "./pages/page-index";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const getActiveStyle = ({ isActive }) => {
@@ -57,6 +65,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
+          <Route
+            path="productDetails/:productDetailsId"
+            element={<ProductDetails />}
+          />
+
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
@@ -65,7 +78,7 @@ function App() {
       </main>
       <ToastContainer autoClose={700} />
     </div>
-  );
+  );                         
 }
 
 export default App;

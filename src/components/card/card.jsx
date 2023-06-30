@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = ({
   id,
@@ -14,8 +15,11 @@ const Card = ({
   return (
     <div className="card">
       <div className="image-container">
-        <img src={image} alt={name} className="card-image" />
+        <Link to={`/${name}/${id}`}>
+          <img src={image} alt={name} className="card-image" />
+        </Link>
       </div>
+
       <div className="card-content">
         <div className="name-rating-container">
           <div className="name-container">
