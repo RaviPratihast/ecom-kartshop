@@ -15,7 +15,7 @@ const Card = ({
   return (
     <div className="card">
       <div className="image-container">
-        <Link to={`/${name}/${id}`}>
+        <Link to={`/product/${id}`}>
           <img src={image} alt={name} className="card-image" />
         </Link>
       </div>

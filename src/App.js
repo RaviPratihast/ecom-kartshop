@@ -10,6 +10,7 @@ import {
   SignIn,
   Wishlist,
 } from "./pages/page-index";
+import { useProduct } from "./context/ecom-context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const getActiveStyle = ({ isActive }) => {
@@ -24,6 +25,7 @@ const getActiveStyle = ({ isActive }) => {
   };
 };
 function App() {
+  const { state } = useProduct();
   return (
     <div className="App">
       <header className="App-header">
@@ -65,10 +67,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
-          <Route
-            path="productDetails/:productDetailsId"
-            element={<ProductDetails />}
-          />
+          <Route path="product/:productDetailsId" element={<ProductDetails />} />
 
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/cart" element={<Cart />} />
@@ -78,7 +77,7 @@ function App() {
       </main>
       <ToastContainer autoClose={700} />
     </div>
-  );                         
+  );
 }
 
 export default App;
