@@ -15,47 +15,56 @@ const Wishlist = () => {
       <div className="wishlist-count">
         <h3>items : {state.wishlist.length}</h3>
       </div>
-      <div className="wishlist-items-container">
-        {state.wishlist.map(
-          ({ id, name, rating, image, originalPrice, price }) => {
-            return (
-              <Card
-                key={id}
-                id={id}
-                name={name}
-                rating={rating}
-                image={image}
-                originalPrice={originalPrice}
-                price={price}
-                label="product"
-              >
-                <div className="add-cart-wishlist-container">
-                  <Button
-                    onClick={() => {
-                      if (itemIsPresentInCart(id)) {
-                        navigate("/cart");
-                      } else {
-                        dispatch({ type: "ADD_TO_CART", payload: id });
-                        toast.success("Added To Cart");
-                      }
-                    }}
-                  >
-                    {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      dispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
-                      toast.success("Item Removed From Wishlist");
-                    }}
-                  >
-                    <span className="material-icons favorite-icon">delete</span>
-                  </Button>
-                </div>
-              </Card>
-            );
-          }
-        )}
-      </div>
+      {state.wishlist.length === 0 ? (
+        <div className="wishlist-empty-container">
+          <h1>Your Wishlist is Empty</h1>
+          <Button onClick={()=>  navigate("/shop")}>Go To Shop</Button>
+        </div>
+      ) : (
+        <div className="wishlist-items-container">
+          {state.wishlist.map(
+            ({ id, name, rating, image, originalPrice, price }) => {
+              return (
+                <Card
+                  key={id}
+                  id={id}
+                  name={name}
+                  rating={rating}
+                  image={image}
+                  originalPrice={originalPrice}
+                  price={price}
+                  label="product"
+                >
+                  <div className="add-cart-wishlist-container">
+                    <Button
+                      onClick={() => {
+                        if (itemIsPresentInCart(id)) {
+                          navigate("/cart");
+                        } else {
+                          dispatch({ type: "ADD_TO_CART", payload: id });
+                          toast.success("Added To Cart");
+                        }
+                      }}
+                    >
+                      {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        dispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
+                        toast.success("Item Removed From Wishlist");
+                      }}
+                    >
+                      <span className="material-icons favorite-icon">
+                        delete
+                      </span>
+                    </Button>
+                  </div>
+                </Card>
+              );
+            }
+          )}
+        </div>
+      )}
     </div>
   );
 };
