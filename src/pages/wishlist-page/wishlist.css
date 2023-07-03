@@ -32,3 +32,18 @@
   margin-top: 12em;
   margin-bottom: 3em;
 }
+.wishlist-empty-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
+  margin-top: 15em;
+  width: 30em;
+  height: 10em;
+  border: 1px solid black;
+  -webkit-box-shadow: 10px 10px 79px -40px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 79px -40px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 79px -40px rgba(0, 0, 0, 0.75);
+}

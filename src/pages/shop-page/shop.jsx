@@ -22,7 +22,6 @@ const Shop = () => {
           <div className="heading-filters">
             <h3>Filters</h3>
 
-            {/* there will one button that will remove if any filter is applied */}
             <Button onClick={() => console.log("hello dispatch")}>Clear</Button>
           </div>
         </div>
