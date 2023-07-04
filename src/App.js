@@ -42,7 +42,7 @@ function App() {
     if (event.target.innerHTML === "login") {
       navigate("/login");
     }
-    console.log(event.target.innerHTML);
+    // console.log(event.target.innerHTML);
   }
   return (
     <div className="App">

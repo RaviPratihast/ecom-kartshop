@@ -28,6 +28,14 @@ const Login = () => {
       toast.error("Wrong Password,try again!");
     }
   }
+  function handleGuestLogin() {
+    dispatchAuth({ type: "GUEST_USER_LOGGED_IN", payload: { loggedIn: true } });
+    const defaultPathName = "/shop";
+    navigate(location?.state?.from?.pathname || defaultPathName, {
+      replace: true,
+    });
+    toast.success("Welcome,Guest");
+  }
   return (
     <div className="Login-container">
       <h2>Log In</h2>
@@ -48,7 +56,7 @@ const Login = () => {
       </div>
       <div className="input-button-container">
         <Button onClick={() => handleLogin()}>Log In</Button>
-        <Button>Guest Login</Button>
+        <Button onClick={() => handleGuestLogin()}>Guest Login</Button>
       </div>
       <div className="have-account-login-container">
         <p>Don't have account? </p>
