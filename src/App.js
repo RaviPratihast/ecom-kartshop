@@ -13,6 +13,7 @@ import {
 import { useProduct } from "./context/ecom-context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RequiresAuth from "./requiresAuth";
 const getActiveStyle = ({ isActive }) => {
   return {
     display: "flex",
@@ -67,10 +68,20 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
-          <Route path="product/:productDetailsId" element={<ProductDetails />} />
+          <Route
+            path="product/:productDetailsId"
+            element={<ProductDetails />}
+          />
 
           <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/cart"
+            element={
+              <RequiresAuth>
+                <Cart />
+              </RequiresAuth>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/signIn" element={<SignIn />} />
         </Routes>
