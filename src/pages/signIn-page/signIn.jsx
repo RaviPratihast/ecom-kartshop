@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { Button, Card } from "../../components/component-index";
+import { Button } from "../../components/component-index";
 import { useAuth } from "../../context/auth-context";
 const SignIn = () => {
   const navigate = useNavigate();
@@ -9,7 +9,6 @@ const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [signedIn, setSignedIn] = useState(false);
 
   function handleSignIn() {
     if (
@@ -24,7 +23,6 @@ const SignIn = () => {
       };
       dispatchAuth({ type: "SIGN_IN", payload: signInData });
       toast.success("Signed In Successful,Try Login now!");
-      setSignedIn((prev) => !prev);
       setUsername("");
       setPassword("");
       setConfirmPassword("");
