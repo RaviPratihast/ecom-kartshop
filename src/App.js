@@ -102,7 +102,14 @@ function App() {
             element={<ProductDetails />}
           />
 
-          <Route path="/wishlist" element={<Wishlist />} />
+          <Route
+            path="/wishlist"
+            element={
+              <RequiresAuth>
+                <Wishlist />
+              </RequiresAuth>
+            }
+          />
           <Route
             path="/cart"
             element={
