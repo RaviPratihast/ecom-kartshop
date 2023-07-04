@@ -19,7 +19,7 @@ const Login = () => {
     );
     if (isUserPresent) {
       dispatchAuth({ type: "USER_LOGGED_IN", payload: { loggedIn: true } });
-      const defaultPathName = "/explore";
+      const defaultPathName = "/shop";
       navigate(location?.state?.from?.pathname || defaultPathName, {
         replace: true,
       });

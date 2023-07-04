@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { NavLink, Routes, Route } from "react-router-dom";
+import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import {
   Cart,
   Home,
@@ -10,23 +10,40 @@ import {
   SignIn,
   Wishlist,
 } from "./pages/page-index";
-import { useProduct } from "./context/ecom-context";
+import { useAuth } from "./context/auth-context";
+// import { useProduct } from "./context/ecom-context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RequiresAuth from "./requiresAuth";
-const getActiveStyle = ({ isActive }) => {
-  return {
-    display: "flex",
-    justifyContent: "center",
-    color: "white",
-    textDecoration: isActive ? "underline" : "none",
-    padding: "0.3em",
-    fontSize: "1.2rem",
-    textUnderlineOffset: "0.4em",
-  };
-};
+
 function App() {
-  const { state } = useProduct();
+  // const { state } = useProduct();
+  const { stateAuth, dispatchAuth } = useAuth();
+  const navigate = useNavigate();
+
+  const getActiveStyle = ({ isActive }) => {
+    return {
+      display: "flex",
+      justifyContent: "center",
+      color: "white",
+      textDecoration: isActive ? "underline" : "none",
+      padding: "0.3em",
+      fontSize: "1.2rem",
+      textUnderlineOffset: "0.4em",
+    };
+  };
+
+  function handleLoginLogout(event) {
+    if (event.target.innerHTML === "logout") {
+      dispatchAuth({ type: "USER_LOGOUT" });
+      navigate("/login");
+      toast.success("Logged Out");
+    }
+    if (event.target.innerHTML === "login") {
+      navigate("/login");
+    }
+    console.log(event.target.innerHTML);
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -57,8 +74,20 @@ function App() {
               />
               <i className="material-icons search-icon icon">search</i>
             </div>
-            <div className="nav-login">
-              <i className="material-icons">login</i>
+            <div
+              className="nav-login-logout"
+              onClick={(event) => handleLoginLogout(event)}
+            >
+              {stateAuth.loggedIn ? (
+                <i
+                  className="material-icons"
+                  // onClick={(event) => console.log(event.target.innerHTML)}
+                >
+                  logout
+                </i>
+              ) : (
+                <i className="material-icons">login</i>
+              )}
             </div>
           </div>
         </div>

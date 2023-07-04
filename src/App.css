@@ -59,6 +59,9 @@
   color: var(--primary-color);
   /* border: 0.1em solid red; */
 }
+.nav-login-logout {
+  cursor: pointer;
+}
 /* .shop-icon-container {
   position: relative;
 }
