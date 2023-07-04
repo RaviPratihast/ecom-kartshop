@@ -1,8 +1,5 @@
 .wishlist-container {
   margin-top: 4em;
-  /* height: 100vh; */
-  /* border: 1px solid red; */
-  /* overflow: hidden; */
 }
 .wishlist-count {
   border: 1px solid black;
@@ -21,7 +18,6 @@
 }
 
 .wishlist-items-container {
-  /* border: 1px solid black; */
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;

@@ -1,0 +1,14 @@
+.Login-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10em;
+  border: 1px solid var(--grey-color);
+  margin-inline: auto;
+  padding: 1.2em;
+  height: 20em;
+  width: 20em;
+  border-radius: 0.2em;
+  -webkit-box-shadow: 10px 10px 79px -40px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 79px -40px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 79px -40px rgba(0, 0, 0, 0.75);
+}
