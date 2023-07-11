@@ -21,6 +21,7 @@ let initialState = {
   initialProduct: items,
   product: items,
   filteredProduct: [],
+  filterApplied: false,
   cart: [],
   // cart:{cartItems:[],totalPriceOfCartItems:0},
   wishlist: [],
