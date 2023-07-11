@@ -15,6 +15,10 @@ const Shop = () => {
   function itemIsPresentInCart(id) {
     return state.cart.some((cartItem) => cartItem.id === id);
   }
+  function handleChangeInput(e) {
+    const eventTargetValue = e.target.value;
+    dispatch({ type: "SET_RANGE", payload: eventTargetValue });
+  }
   return (
     <div className="filter-product-container">
       <div className="filters-container">
@@ -28,17 +32,17 @@ const Shop = () => {
         <div className="price-filter">
           <h4>Price Range</h4>
           <div className="price-filter-input-container">
-            <span className="range-initials">0</span>
+            <span className="range-initials">{state.minPrice}</span>
             <input
               className="custom-range"
               type="range"
               min={0}
               max={6000}
               step={1}
-              // value={state.maxPrice}
-              // onChange={handleChangeInput}
+              value={state.maxPrice}
+              onChange={handleChangeInput}
             />
-            <span className="range-finals">100</span>
+            <span className="range-finals">{state.maxPrice}</span>
           </div>
         </div>
         <div className="sort-filter">

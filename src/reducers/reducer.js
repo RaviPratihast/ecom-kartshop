@@ -4,6 +4,7 @@ export function reducer(state, action) {
       return arrItem.id === action.payload;
     });
   }
+  console.log(action.payload);
 
   switch (action.type) {
     case "ADD_TO_CART":
@@ -80,6 +81,18 @@ export function reducer(state, action) {
           (wishlistItem) => wishlistItem.id !== action.payload
         ),
       };
+    // filters
+    case "SET_RANGE":
+      const filteredProducts = state.initialProduct.filter(
+        (product) =>
+          product.price >= state.minPrice && product.price <= action.payload
+      );
+      return {
+        ...state,
+        product: filteredProducts,
+        maxPrice: action.payload,
+      };
+
     default:
       return state;
   }
