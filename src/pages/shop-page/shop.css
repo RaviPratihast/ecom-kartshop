@@ -175,6 +175,7 @@ select {
   margin-left: 24rem;
   margin-bottom: 2%;
   border-radius: 0.3rem;
+  /* border:1px solid red; */
 }
 .add-cart-wishlist-container {
   display: flex;
