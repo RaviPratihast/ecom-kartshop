@@ -5,6 +5,7 @@ export function reducer(state, action) {
     });
   }
   console.log(action.payload);
+  console.log(state.filteredProduct);
 
   switch (action.type) {
     case "ADD_TO_CART":
@@ -83,16 +84,61 @@ export function reducer(state, action) {
       };
     // filters
     case "SET_RANGE":
-      const filteredProducts = state.initialProduct.filter(
+      if (state.filterApplied) {
+        console.log("if block for range");
+        const filteredProductsCurr = state.filteredProduct.filter(
+          (product) =>
+            product.price >= state.minPrice && product.price <= action.payload
+        );
+        return {
+          ...state,
+          product: filteredProductsCurr,
+          maxPrice: action.payload,
+        };
+      }
+      const filteredProductsCurr = state.initialProduct.filter(
         (product) =>
           product.price >= state.minPrice && product.price <= action.payload
       );
       return {
         ...state,
-        product: filteredProducts,
+        product: filteredProductsCurr,
+        filteredProduct: filteredProductsCurr,
+        // filterApplied: true,
+        rangeFilterApplied: true,
         maxPrice: action.payload,
       };
+    case "HIGH_TO_LOW":
+      return {
+        ...state,
+        product: state.product.sort((a, b) => b.price - a.price),
+      };
+    case "LOW_TO_HIGH":
+      return {
+        ...state,
+        product: state.product.sort((a, b) => a.price - b.price),
+      };
+    case "FILTER_BY_RATING":
+      if (state.rangeFilterApplied) {
+        console.log("if range");
+        return {
+          ...state,
+          product: state.filteredProduct.filter(
+            (product) => product.rating >= action.payload
+          ),
+        };
+      }
 
+      const ratingFilteredProduct = state.initialProduct.filter(
+        (product) => product.rating >= action.payload
+      );
+      return {
+        ...state,
+        product: ratingFilteredProduct,
+        filteredProduct: ratingFilteredProduct,
+        ratingFilterApplied: true,
+        filterRating: action.payload,
+      };
     default:
       return state;
   }

@@ -11,6 +11,7 @@ const Shop = () => {
       return arrItem.id === id;
     });
   }
+  console.log("filteredProduct", state.filteredProduct);
 
   function itemIsPresentInCart(id) {
     return state.cart.some((cartItem) => cartItem.id === id);
@@ -55,8 +56,8 @@ const Shop = () => {
               Price-High to low
             </Button>
             <Button
-            // className="card-add-to-cart-button sort-button"
-            // onClick={() => dispatch({ type: "LOW_TO_HIGH" })}
+              className="card-add-to-cart-button sort-button"
+              onClick={() => dispatch({ type: "LOW_TO_HIGH" })}
             >
               Price-Low to high
             </Button>
@@ -68,13 +69,22 @@ const Shop = () => {
           </label>
           <select
             className="rating-filter"
-            // value={state.filterRating}
-            // onChange={handleChangeRating}
+            value={state.filterRating}
+            onChange={(event) =>
+              dispatch({
+                type: "FILTER_BY_RATING",
+                payload: parseFloat(event.target.value),
+              })
+            }
           >
             <option className="option-selection" value="0">
               All
             </option>
-            <option className="option-selection" value="2">
+            <option
+              className="option-selection"
+              value="2"
+              // selected={state.filterRating === 2}
+            >
               1 Stars and above
             </option>
             <option className="option-selection" value="3">
