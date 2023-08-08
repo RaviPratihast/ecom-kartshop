@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Routes, Route, useNavigate } from "react-router-dom";
 import {
   Cart,
@@ -11,15 +11,16 @@ import {
   Wishlist,
 } from "./pages/page-index";
 import { useAuth } from "./context/auth-context";
-// import { useProduct } from "./context/ecom-context";
+import { useProduct } from "./context/ecom-context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RequiresAuth from "./requiresAuth";
 
 function App() {
-  // const { state } = useProduct();
+  const { dispatch } = useProduct();
   const { stateAuth, dispatchAuth } = useAuth();
   const navigate = useNavigate();
+  const [search, setSearch] = useState("");
 
   const getActiveStyle = ({ isActive }) => {
     return {
@@ -32,6 +33,18 @@ function App() {
       textUnderlineOffset: "0.4em",
     };
   };
+  function handleSearchInput(event) {
+    if (event.target.value === "") {
+      dispatch({ type: "RESET_SEARCH" });
+    }
+    setSearch(event.target.value);
+  }
+
+  function handleSearchClick(event) {
+    // console.log(search);
+    // setSearch(event.target.value);
+    dispatch({ type: "SEARCH", payload: search });
+  }
 
   function handleLoginLogout(event) {
     if (event.target.innerHTML === "logout") {
@@ -71,8 +84,15 @@ function App() {
               <input
                 className="input nav-search-input"
                 placeholder="Search.."
+                value={search}
+                onChange={(event) => handleSearchInput(event)}
               />
-              <i className="material-icons search-icon icon">search</i>
+              <i
+                className="material-icons search-icon icon"
+                onClick={() => handleSearchClick()}
+              >
+                search
+              </i>
             </div>
             <div
               className="nav-login-logout"

@@ -139,6 +139,19 @@ export function reducer(state, action) {
         ratingFilterApplied: true,
         filterRating: action.payload,
       };
+    case "SEARCH":
+      return {
+        ...state,
+        product: state.initialProduct.filter((product) =>
+          product.name.toLowerCase().includes(action.payload.toLowerCase())
+        ),
+      };
+    case "RESET_SEARCH":
+      return {
+        ...state,
+        product: state.initialProduct,
+      };
+
     default:
       return state;
   }
