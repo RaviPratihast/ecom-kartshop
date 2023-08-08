@@ -27,7 +27,7 @@ const Shop = () => {
           <div className="heading-filters">
             <h3>Filters</h3>
 
-            <Button onClick={() => console.log("hello dispatch")}>Clear</Button>
+            <Button onClick={() => dispatch({type:"CLEAR_FILTERS"})}>Clear</Button>
           </div>
         </div>
         <div className="price-filter">

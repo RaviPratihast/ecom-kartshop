@@ -139,6 +139,13 @@ export function reducer(state, action) {
         ratingFilterApplied: true,
         filterRating: action.payload,
       };
+    case "CLEAR_FILTERS":
+      return {
+        ...state,
+        product: state.initialProduct,
+        filterRating: 0,
+        maxPrice: 6000,
+      };
     case "SEARCH":
       return {
         ...state,
