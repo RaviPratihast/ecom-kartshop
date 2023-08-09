@@ -34,6 +34,7 @@ KartShop is an E-commerce platform.
 ## Demo
 
 * It is just a demo, for better look of this E-commerce go to the about section, have added a link for this App.
+![kartShop](/public/image/asset/demo.gif)
 
 ## Tech
 
