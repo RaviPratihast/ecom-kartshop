@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { Button } from "../../components/component-index";
 import { useProduct } from "../../context/ecom-context";
 import { toast } from "react-toastify";
-// import "./product-details.css";
 import { useNavigate } from "react-router-dom";
 const ProductDetails = () => {
   const { productDetailsId } = useParams();

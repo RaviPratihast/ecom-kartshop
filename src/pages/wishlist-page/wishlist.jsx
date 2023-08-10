@@ -9,7 +9,6 @@ const Wishlist = () => {
   function itemIsPresentInCart(id) {
     return state.cart.some((cartItem) => cartItem.id === id);
   }
-  console.log(state.wishlist);
   return (
     <div className="wishlist-container">
       <div className="wishlist-count">
@@ -18,7 +17,7 @@ const Wishlist = () => {
       {state.wishlist.length === 0 ? (
         <div className="wishlist-empty-container">
           <h1>Your Wishlist is Empty</h1>
-          <Button onClick={()=>  navigate("/shop")}>Go To Shop</Button>
+          <Button onClick={() => navigate("/shop")}>Go To Shop</Button>
         </div>
       ) : (
         <div className="wishlist-items-container">
