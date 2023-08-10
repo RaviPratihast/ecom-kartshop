@@ -4,7 +4,7 @@ export function reducer(state, action) {
       return arrItem.id === action.payload;
     });
   }
-  console.log(action.payload);
+  console.log("payload", action.payload);
   console.log(state.filteredProduct);
 
   switch (action.type) {
@@ -83,8 +83,19 @@ export function reducer(state, action) {
         ),
       };
     // filters
+
+    case "HIGH_TO_LOW":
+      return {
+        ...state,
+        product: state.product.sort((a, b) => b.price - a.price),
+      };
+    case "LOW_TO_HIGH":
+      return {
+        ...state,
+        product: state.product.sort((a, b) => a.price - b.price),
+      };
     case "SET_RANGE":
-      if (state.filterApplied) {
+      if (state.ratingFilterApplied) {
         console.log("if block for range");
         const filteredProductsCurr = state.filteredProduct.filter(
           (product) =>
@@ -108,16 +119,6 @@ export function reducer(state, action) {
         rangeFilterApplied: true,
         maxPrice: action.payload,
       };
-    case "HIGH_TO_LOW":
-      return {
-        ...state,
-        product: state.product.sort((a, b) => b.price - a.price),
-      };
-    case "LOW_TO_HIGH":
-      return {
-        ...state,
-        product: state.product.sort((a, b) => a.price - b.price),
-      };
     case "FILTER_BY_RATING":
       if (state.rangeFilterApplied) {
         console.log("if range");
@@ -126,8 +127,10 @@ export function reducer(state, action) {
           product: state.filteredProduct.filter(
             (product) => product.rating >= action.payload
           ),
+          filterRating: action.payload,
         };
       }
+      console.log("not if");
 
       const ratingFilteredProduct = state.initialProduct.filter(
         (product) => product.rating >= action.payload
@@ -145,6 +148,8 @@ export function reducer(state, action) {
         product: state.initialProduct,
         filterRating: 0,
         maxPrice: 6000,
+        rangeFilterApplied: false,
+        ratingFilterApplied: false,
       };
     case "SEARCH":
       return {
