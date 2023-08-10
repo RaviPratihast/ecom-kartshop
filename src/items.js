@@ -75,7 +75,7 @@ const items = [
       process.env.PUBLIC_URL +
       "image/asset/Minimalist Solid Gold Seven Diamond Ring Dainty Gold Diamond - Etsy.jpeg",
     originalPrice: 7500,
-    price: 6200,
+    price: 5900,
     description:
       "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
     qty: 0,
