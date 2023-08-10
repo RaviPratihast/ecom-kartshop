@@ -4,9 +4,6 @@ export function reducer(state, action) {
       return arrItem.id === action.payload;
     });
   }
-  console.log("payload", action.payload);
-  console.log(state.filteredProduct);
-
   switch (action.type) {
     case "ADD_TO_CART":
       if (itemIsPresent(state.cart)) {
@@ -82,7 +79,6 @@ export function reducer(state, action) {
           (wishlistItem) => wishlistItem.id !== action.payload
         ),
       };
-    // filters
 
     case "HIGH_TO_LOW":
       return {
@@ -96,7 +92,6 @@ export function reducer(state, action) {
       };
     case "SET_RANGE":
       if (state.ratingFilterApplied) {
-        console.log("if block for range");
         const filteredProductsCurr = state.filteredProduct.filter(
           (product) =>
             product.price >= state.minPrice && product.price <= action.payload
@@ -115,13 +110,11 @@ export function reducer(state, action) {
         ...state,
         product: filteredProductsCurr,
         filteredProduct: filteredProductsCurr,
-        // filterApplied: true,
         rangeFilterApplied: true,
         maxPrice: action.payload,
       };
     case "FILTER_BY_RATING":
       if (state.rangeFilterApplied) {
-        console.log("if range");
         return {
           ...state,
           product: state.filteredProduct.filter(
@@ -130,7 +123,6 @@ export function reducer(state, action) {
           filterRating: action.payload,
         };
       }
-      console.log("not if");
 
       const ratingFilteredProduct = state.initialProduct.filter(
         (product) => product.rating >= action.payload
