@@ -4,9 +4,6 @@ export function reducer(state, action) {
       return arrItem.id === action.payload;
     });
   }
-  console.log(action.payload);
-  console.log(state.filteredProduct);
-
   switch (action.type) {
     case "ADD_TO_CART":
       if (itemIsPresent(state.cart)) {
@@ -82,10 +79,19 @@ export function reducer(state, action) {
           (wishlistItem) => wishlistItem.id !== action.payload
         ),
       };
-    // filters
+
+    case "HIGH_TO_LOW":
+      return {
+        ...state,
+        product: state.product.sort((a, b) => b.price - a.price),
+      };
+    case "LOW_TO_HIGH":
+      return {
+        ...state,
+        product: state.product.sort((a, b) => a.price - b.price),
+      };
     case "SET_RANGE":
-      if (state.filterApplied) {
-        console.log("if block for range");
+      if (state.ratingFilterApplied) {
         const filteredProductsCurr = state.filteredProduct.filter(
           (product) =>
             product.price >= state.minPrice && product.price <= action.payload
@@ -104,28 +110,17 @@ export function reducer(state, action) {
         ...state,
         product: filteredProductsCurr,
         filteredProduct: filteredProductsCurr,
-        // filterApplied: true,
         rangeFilterApplied: true,
         maxPrice: action.payload,
       };
-    case "HIGH_TO_LOW":
-      return {
-        ...state,
-        product: state.product.sort((a, b) => b.price - a.price),
-      };
-    case "LOW_TO_HIGH":
-      return {
-        ...state,
-        product: state.product.sort((a, b) => a.price - b.price),
-      };
     case "FILTER_BY_RATING":
       if (state.rangeFilterApplied) {
-        console.log("if range");
         return {
           ...state,
           product: state.filteredProduct.filter(
             (product) => product.rating >= action.payload
           ),
+          filterRating: action.payload,
         };
       }
 
@@ -145,6 +140,8 @@ export function reducer(state, action) {
         product: state.initialProduct,
         filterRating: 0,
         maxPrice: 6000,
+        rangeFilterApplied: false,
+        ratingFilterApplied: false,
       };
     case "SEARCH":
       return {

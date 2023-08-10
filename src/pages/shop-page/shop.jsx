@@ -27,7 +27,9 @@ const Shop = () => {
           <div className="heading-filters">
             <h3>Filters</h3>
 
-            <Button onClick={() => dispatch({type:"CLEAR_FILTERS"})}>Clear</Button>
+            <Button onClick={() => dispatch({ type: "CLEAR_FILTERS" })}>
+              Clear
+            </Button>
           </div>
         </div>
         <div className="price-filter">
@@ -49,10 +51,7 @@ const Shop = () => {
         <div className="sort-filter">
           <label>Sort By</label>
           <div className="sort-filter-button-container">
-            <Button
-              // className="card-add-to-cart-button sort-button"
-              onClick={() => dispatch({ type: "HIGH_TO_LOW" })}
-            >
+            <Button onClick={() => dispatch({ type: "HIGH_TO_LOW" })}>
               Price-High to low
             </Button>
             <Button
@@ -80,20 +79,13 @@ const Shop = () => {
             <option className="option-selection" value="0">
               All
             </option>
-            <option
-              className="option-selection"
-              value="2"
-              // selected={state.filterRating === 2}
-            >
-              1 Stars and above
-            </option>
-            <option className="option-selection" value="3">
+            <option className="option-selection" value="2">
               2 Stars and Above
             </option>
-            <option className="option-selection" value="4">
+            <option className="option-selection" value="3">
               3 Stars and Above
             </option>
-            <option className="option-selection" value="5">
+            <option className="option-selection" value="4">
               4 Stars and Above
             </option>
           </select>
