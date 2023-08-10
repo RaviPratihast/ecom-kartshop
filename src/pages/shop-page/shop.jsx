@@ -11,7 +11,6 @@ const Shop = () => {
       return arrItem.id === id;
     });
   }
-  console.log("filteredProduct", state.filteredProduct);
 
   function itemIsPresentInCart(id) {
     return state.cart.some((cartItem) => cartItem.id === id);

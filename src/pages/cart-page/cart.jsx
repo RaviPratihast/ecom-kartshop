@@ -6,8 +6,6 @@ import { toast } from "react-toastify";
 const Cart = () => {
   const navigate = useNavigate();
   const { state, dispatch, subTotal } = useProduct();
-  console.log(state);
-
   function itemIsPresent(id) {
     return state.wishlist.some((arrItem) => {
       return arrItem.id === id;
@@ -20,7 +18,7 @@ const Cart = () => {
         {state.cart.length === 0 ? (
           <div className="empty-container-notice">
             <h1>Your Cart is Empty</h1>
-            <Button onClick={()=>  navigate("/shop")}>Go To Shop</Button>
+            <Button onClick={() => navigate("/shop")}>Go To Shop</Button>
           </div>
         ) : (
           state.cart.map(

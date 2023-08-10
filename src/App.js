@@ -41,8 +41,6 @@ function App() {
   }
 
   function handleSearchClick(event) {
-    // console.log(search);
-    // setSearch(event.target.value);
     dispatch({ type: "SEARCH", payload: search });
   }
 
@@ -55,7 +53,6 @@ function App() {
     if (event.target.innerHTML === "login") {
       navigate("/login");
     }
-    // console.log(event.target.innerHTML);
   }
   return (
     <div className="App">
@@ -99,12 +96,7 @@ function App() {
               onClick={(event) => handleLoginLogout(event)}
             >
               {stateAuth.loggedIn ? (
-                <i
-                  className="material-icons"
-                  // onClick={(event) => console.log(event.target.innerHTML)}
-                >
-                  logout
-                </i>
+                <i className="material-icons">logout</i>
               ) : (
                 <i className="material-icons">login</i>
               )}

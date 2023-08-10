@@ -49,10 +49,3 @@
   background-color: var(--primary-color);
   border-top-right-radius: 0.2em;
 }
-
-/* @media (max-width: 1175px) {
-  .explore-container {
-    top: 2em;
-    left: 3em;
-  }
-} */
