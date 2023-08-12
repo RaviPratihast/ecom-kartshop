@@ -42,8 +42,7 @@ KartShop is an E-commerce platform.
   * React JS
   * CSS3
   * Flexbox Layout
-  * React Context API + useReducer
-  * React Router v6
+  * React Router
 
 ## Resources
 * [Material Symbols & Icons](https://fonts.google.com/icons)
