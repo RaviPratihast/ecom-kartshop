@@ -75,22 +75,22 @@ function App() {
               </div>
             </NavLink>
           </nav>
+          <div className="nav-search">
+            <input
+              className="input nav-search-input"
+              placeholder="Search.."
+              value={search}
+              onChange={(event) => handleSearchInput(event)}
+            />
+            <i
+              className="material-icons search-icon icon"
+              onClick={() => handleSearchClick()}
+            >
+              search
+            </i>
+          </div>
 
           <div className="nav-search-login">
-            <div className="nav-search">
-              <input
-                className="input nav-search-input"
-                placeholder="Search.."
-                value={search}
-                onChange={(event) => handleSearchInput(event)}
-              />
-              <i
-                className="material-icons search-icon icon"
-                onClick={() => handleSearchClick()}
-              >
-                search
-              </i>
-            </div>
             <div
               className="nav-login-logout"
               onClick={(event) => handleLoginLogout(event)}
