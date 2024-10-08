@@ -56,25 +56,16 @@ function App() {
   }
   return (
     <div className="App">
-      <header className="App-header">
+      <nav className="App-header">
         <div className="nav-container">
-          <nav className="nav-links">
-            <NavLink style={getActiveStyle} to="/">
-              <h1> KS</h1>
-            </NavLink>
-            <NavLink style={getActiveStyle} to="/shop">
-              <i className="material-icons">explore</i>
-            </NavLink>
-            <NavLink style={getActiveStyle} to="/wishlist">
-              <i className="material-icons">favorite</i>
-            </NavLink>
-            <NavLink style={getActiveStyle} to="/cart">
-              <div className="icon-container">
-                <i className="material-icons icon-shop ">shopping_cart</i>
-                <div className="badge"></div>
-              </div>
-            </NavLink>
-          </nav>
+          {/* left nav */}
+          {/* nav-links ---> nav-left */}
+          <div className="nav-left">
+            {/* <NavLink style={getActiveStyle} to="/">
+            </NavLink> */}
+            <h1> Kartshop</h1>
+          </div>
+          {/* nav search */}
           <div className="nav-search">
             <input
               className="input nav-search-input"
@@ -83,27 +74,40 @@ function App() {
               onChange={(event) => handleSearchInput(event)}
             />
             <i
-              className="material-icons search-icon icon"
+              className="material-icons search-icon"
               onClick={() => handleSearchClick()}
             >
               search
             </i>
           </div>
-
-          <div className="nav-search-login">
+          {/* right nav and login */}
+          {/* nav-search-login ---> nav-right */}
+          <div className="navbar-right">
+            <NavLink style={getActiveStyle} to="/shop">
+              <i className="material-icons icon">explore</i>
+            </NavLink>
+            <NavLink style={getActiveStyle} to="/wishlist">
+              <i className="material-icons icon">favorite</i>
+            </NavLink>
+            <NavLink style={getActiveStyle} to="/cart">
+              <div className="icon-container">
+                <i className="material-icons icon-shop icon">shopping_cart</i>
+                <div className="badge"></div>
+              </div>
+            </NavLink>
             <div
               className="nav-login-logout"
               onClick={(event) => handleLoginLogout(event)}
             >
               {stateAuth.loggedIn ? (
-                <i className="material-icons">logout</i>
+                <i className="material-icons icon">logout</i>
               ) : (
-                <i className="material-icons">login</i>
+                <i className="material-icons icon">login</i>
               )}
             </div>
           </div>
         </div>
-      </header>
+      </nav>
 
       <main>
         <Routes>
