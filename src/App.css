@@ -14,11 +14,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--primary-color);
+  border: 1px solid rgb(207, 203, 203);
+  background-color: white;
   color: var(--secondary-color);
 }
 
-.nav-container  .nav-links {
+.nav-container .nav-left {
   display: flex;
   color: rgb(11, 10, 10);
   justify-content: space-between;
@@ -28,13 +29,6 @@
   margin-left: 3em;
 }
 
-.nav-container > .nav-search-login {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 2.5em;
-  margin-right: 2.5rem;
-}
 .nav-container .nav-search {
   display: flex;
   justify-content: center;
@@ -42,6 +36,7 @@
   width: 35em;
   height: 2.5em;
   border-radius: 0.3em;
+  border: 1px solid rgb(207, 203, 203);
   background-color: var(--secondary-color);
 }
 .nav-container .nav-search-input {
@@ -54,10 +49,25 @@
   padding-right: 0.5em;
   font-size: inherit;
 }
-.icon {
+.nav-container > .navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 2.5em;
+  margin-right: 2.5rem;
+  
+}
+.search-icon {
   color: var(--primary-color);
   cursor: pointer;
   padding-right: 1em;
+}
+.icon {
+  color: var(--primary-color);
+  cursor: pointer;
+  /* padding-right: 1em; */
+  font-size: 1.9rem;
 }
 .nav-login-logout {
   cursor: pointer;
