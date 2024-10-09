@@ -52,8 +52,6 @@ const Shop = () => {
   return (
     <div className="filter-product-container">
       <div className="filters-container">
-
-        {/* filter */}
         <div className="filters">
           <div className="heading-filters">
             <h3>Filters</h3>
@@ -138,46 +136,17 @@ const Shop = () => {
                 label="product"
               >
                 <div className="add-cart-wishlist-container">
-                  {/* <Button
-                    onClick={() => {
-                      if (itemIsPresentInCart(id)) {
-                        navigate("/cart");
-                      } else {
-                        dispatch({ type: "ADD_TO_CART", payload: id });
-                        toast.success("Added To Cart");
-                      }
-                    }}
+                  <Button
+                    onClick={() => handleAddToCart(id)}
+                    className="card-button-add"
                   >
-
-                    {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
-                  </Button> */}
-                  <Button onClick={() => handleAddToCart(id)} className="card-button-add">
                     {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
                   </Button>
 
-                  {/* <Button
-                    onClick={() => {
-                      if (itemIsPresent(id)) {
-                        dispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
-                        toast.success("Item Removed From Wishlist");
-                      } else {
-                        dispatch({ type: "ADD_TO_WISHLIST", payload: id });
-                        toast.success("Added To Wishlist");
-                      }
-                    }}
+                  <Button
+                    onClick={() => handleAddToWishlist(id)}
+                    className="card-button-wishlist"
                   >
-                    {itemIsPresent(id) ? (
-                      <span className="material-icons favorite-icon-active">
-                        favorite
-                      </span>
-                    ) : (
-                      <span className="material-icons favorite-icon">
-                        favorite
-                      </span>
-                    )}
-                  </Button> */}
-
-                  <Button onClick={() => handleAddToWishlist(id)} className="card-button-wishlist">
                     {itemIsPresent(id) ? (
                       <span className="material-icons favorite-icon-active">
                         favorite

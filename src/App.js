@@ -58,8 +58,6 @@ function App() {
     <div className="App">
       <nav className="App-header">
         <div className="nav-container">
-          {/* left nav */}
-          {/* nav-links ---> nav-left */}
           <div className="nav-left">
             {/* <NavLink style={getActiveStyle} to="/">
             </NavLink> */}
@@ -80,8 +78,7 @@ function App() {
               search
             </i>
           </div>
-          {/* right nav and login */}
-          {/* nav-search-login ---> nav-right */}
+
           <div className="navbar-right">
             <NavLink style={getActiveStyle} to="/shop">
               <i className="material-icons icon">explore</i>
