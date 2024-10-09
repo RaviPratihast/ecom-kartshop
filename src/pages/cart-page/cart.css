@@ -23,7 +23,7 @@
   gap: 1em;
   border: 1px solid rgb(212, 206, 206);
   margin-right: 2em;
-  height:20em;
+  height: 20em;
   width: 20em;
   margin-top: 3em;
   position: fixed;
@@ -33,18 +33,18 @@
 .proceed-to-payment-container > p {
   font-size: 20px;
 }
-.button-proceed-to-payment{
-  padding:1rem 2rem;
+.button-proceed-to-payment {
+  padding: 1rem 2rem;
 }
-.button-clear-cart{
-  padding:1rem 2rem;
+.button-clear-cart {
+  padding: 1rem 2rem;
   background-color: white;
   color: black;
   border: 2px solid black;
 }
-.button-clear-cart:hover{
-  background-color:black;
-  color:white;
+.button-clear-cart:hover {
+  background-color: black;
+  color: white;
   border: 2px solid black;
 }
 .cart-icons {
@@ -82,14 +82,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 10em;
+  align-items: center;
+  margin-top: 5em;
   gap: 2em;
   align-items: center;
   margin-inline: 20em;
   width: 40em;
   height: 15em;
+
 }
 
-.go-to-shop-button{
+.go-to-shop-button {
   padding: 1rem 1.5rem;
 }
