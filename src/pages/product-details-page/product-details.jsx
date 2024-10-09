@@ -39,7 +39,10 @@ const ProductDetails = () => {
                 <div className="products-details-button-container">
                   <Button
                     onClick={() => {
-                      if (itemIsPresentInCart(product.id)) {
+                      if (!state.isLoggedIn) {
+                        navigate("/login");
+                        toast.info("Please log in to add items to the cart");
+                      } else if (itemIsPresentInCart(product.id)) {
                         navigate("/cart");
                       } else {
                         dispatch({ type: "ADD_TO_CART", payload: product.id });
@@ -54,7 +57,10 @@ const ProductDetails = () => {
                   </Button>
                   <Button
                     onClick={() => {
-                      if (itemIsPresent(product.id)) {
+                      if (!state.isLoggedIn) {
+                        navigate("/login");
+                        toast.info("Please log in to add items to the wishlist");
+                      } else if (itemIsPresent(product.id)) {
                         dispatch({
                           type: "REMOVE_FROM_WISHLIST",
                           payload: product.id,
