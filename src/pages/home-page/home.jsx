@@ -26,8 +26,10 @@ const Home = () => {
     <div>
       <div className="home-wrapper">
         <div className="home-content">
-          <h1>Kartshop</h1>
-          <h3>Shop everything you want</h3>
+          <div className="home-text">
+            <h1>Kartshop</h1>
+            <p>Shop everything you want</p>
+          </div>
           <Button onClick={() => navigate("/shop")}>Explore more</Button>
         </div>
 

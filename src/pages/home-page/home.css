@@ -5,15 +5,17 @@
   align-items: center;
   padding: 2rem;
   gap: 3rem;
+  /* border: 1px solid red; */
+  margin-top: 100px;
 }
 
 .home-image {
-  max-width: 35rem;
-  
+  max-width: 45rem;
+  /* border: 1px solid red; */
 }
 .home-image img {
-  width: 400px; /* Set your preferred width */
-  height: 400px; /* Set your preferred height */
+  width: 35em; /* Set your preferred width */
+  height: 35em; /* Set your preferred height */
   max-width: 100%; /* Ensures it scales down */
   height: auto;
 }
@@ -21,7 +23,13 @@
 .home-content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
+  /* border: 1px solid red; */
+  padding: 2px;
+}
+.home-text{
+  font-size: 2.5rem;
+  
 }
 
 .home-btn {
