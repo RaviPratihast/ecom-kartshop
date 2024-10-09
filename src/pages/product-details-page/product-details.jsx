@@ -11,7 +11,7 @@ const ProductDetails = () => {
   const { stateAuth } = useAuth();
 
   const navigate = useNavigate();
-  console.log(productDetailsId);
+  console.log("stateAUth", stateAuth);
   function itemIsPresentInCart(id) {
     return state.cart.some((cartItem) => cartItem.id === id);
   }
@@ -22,6 +22,7 @@ const ProductDetails = () => {
   }
   return (
     <div className="product-container">
+      {console.log("stateAUth", stateAuth.loggedIn)}
       {state.product.map(
         (product) =>
           product.id === productDetailsId && (
@@ -42,9 +43,8 @@ const ProductDetails = () => {
                 <div className="products-details-button-container">
                   <Button
                     onClick={() => {
-                      console.log(state.loggedIn);
-                      if (!stateAuth.LoggedIn) {
-                        // Check that state.isLoggedIn is properly updated after login
+                      console.log(stateAuth.loggedIn);
+                      if (!stateAuth.loggedIn) {
                         navigate("/login");
                         toast.info("Please log in to add items to the cart");
                       } else if (itemIsPresentInCart(product.id)) {
@@ -60,6 +60,7 @@ const ProductDetails = () => {
                       ? "Go To Cart"
                       : "Add To Cart"}
                   </Button>
+
                   <Button
                     onClick={() => {
                       if (!state.isLoggedIn) {
