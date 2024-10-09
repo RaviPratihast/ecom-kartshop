@@ -8,12 +8,17 @@
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 0.3rem;
+  gap: 2rem;
+  height: auto;
+  width: 100%;
   padding-inline: 2em;
-  margin-top: 3em;
-  margin-right: 30rem;
+   margin-top: 3em;
   margin-left: 6rem;
+  margin-right: 25rem;
+
+  /* margin-inline: auto; */
   margin-bottom: 3em;
+  /* border: 1px solid red; */
 }
 .proceed-to-payment-container {
   display: flex;
@@ -86,10 +91,9 @@
   margin-top: 5em;
   gap: 2em;
   align-items: center;
-  margin-inline: 20em;
-  width: 40em;
-  height: 15em;
-
+  margin-top: 10rem;
+  margin-left: 20rem;
+  width: 100%;
 }
 
 .go-to-shop-button {

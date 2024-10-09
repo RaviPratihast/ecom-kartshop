@@ -4,9 +4,12 @@ import { Button } from "../../components/component-index";
 import { useProduct } from "../../context/ecom-context";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
 const ProductDetails = () => {
   const { productDetailsId } = useParams();
   const { state, dispatch } = useProduct();
+  const { stateAuth } = useAuth();
+
   const navigate = useNavigate();
   console.log(productDetailsId);
   function itemIsPresentInCart(id) {
@@ -39,7 +42,9 @@ const ProductDetails = () => {
                 <div className="products-details-button-container">
                   <Button
                     onClick={() => {
-                      if (!state.isLoggedIn) {
+                      console.log(state.loggedIn);
+                      if (!stateAuth.LoggedIn) {
+                        // Check that state.isLoggedIn is properly updated after login
                         navigate("/login");
                         toast.info("Please log in to add items to the cart");
                       } else if (itemIsPresentInCart(product.id)) {
@@ -59,7 +64,9 @@ const ProductDetails = () => {
                     onClick={() => {
                       if (!state.isLoggedIn) {
                         navigate("/login");
-                        toast.info("Please log in to add items to the wishlist");
+                        toast.info(
+                          "Please log in to add items to the wishlist"
+                        );
                       } else if (itemIsPresent(product.id)) {
                         dispatch({
                           type: "REMOVE_FROM_WISHLIST",
