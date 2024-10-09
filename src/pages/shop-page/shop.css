@@ -170,11 +170,11 @@ select {
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.2em;
+  gap: 3em;
+  padding-left: 5rem;
   margin-top: 0.9rem;
   margin-left: 24rem;
   margin-bottom: 2%;
-  border-radius: 0.3rem;
 }
 .add-cart-wishlist-container {
   display: flex;
@@ -183,4 +183,18 @@ select {
 
 .favorite-icon-selected {
   color: red;
+}
+
+.card-button-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3rem;
+}
+.card-button-add:hover {
+  border: 1px solid black;
+}
+
+.card-button-wishlist:hover {
+  border: 1px solid black;
 }

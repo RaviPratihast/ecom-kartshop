@@ -2,10 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useProduct } from "../../context/ecom-context";
 import { Button, Card } from "../../components/component-index";
+import { useAuth } from "../../context/auth-context";
 import { toast } from "react-toastify";
 const Shop = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useProduct();
+  const { stateAuth } = useAuth();
   function itemIsPresent(id) {
     return state.wishlist.some((arrItem) => {
       return arrItem.id === id;
@@ -19,6 +21,34 @@ const Shop = () => {
     const eventTargetValue = e.target.value;
     dispatch({ type: "SET_RANGE", payload: eventTargetValue });
   }
+
+  function handleAddToCart(id) {
+    if (stateAuth.loggedIn) {
+      if (itemIsPresentInCart(id)) {
+        navigate("/cart");
+      } else {
+        dispatch({ type: "ADD_TO_CART", payload: id });
+        toast.success("Added To Cart");
+      }
+    } else {
+      navigate("/login");
+    }
+  }
+
+  function handleAddToWishlist(id) {
+    if (stateAuth.loggedIn) {
+      if (itemIsPresent(id)) {
+        dispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
+        toast.success("Item Removed From Wishlist");
+      } else {
+        dispatch({ type: "ADD_TO_WISHLIST", payload: id });
+        toast.success("Added To Wishlist");
+      }
+    } else {
+      navigate("/login");
+    }
+  }
+
   return (
     <div className="filter-product-container">
       <div className="filters-container">
@@ -106,7 +136,7 @@ const Shop = () => {
                 label="product"
               >
                 <div className="add-cart-wishlist-container">
-                  <Button
+                  {/* <Button
                     onClick={() => {
                       if (itemIsPresentInCart(id)) {
                         navigate("/cart");
@@ -116,10 +146,14 @@ const Shop = () => {
                       }
                     }}
                   >
+
+                    {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
+                  </Button> */}
+                  <Button onClick={() => handleAddToCart(id)} className="card-button-add">
                     {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
                   </Button>
 
-                  <Button
+                  {/* <Button
                     onClick={() => {
                       if (itemIsPresent(id)) {
                         dispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
@@ -130,6 +164,18 @@ const Shop = () => {
                       }
                     }}
                   >
+                    {itemIsPresent(id) ? (
+                      <span className="material-icons favorite-icon-active">
+                        favorite
+                      </span>
+                    ) : (
+                      <span className="material-icons favorite-icon">
+                        favorite
+                      </span>
+                    )}
+                  </Button> */}
+
+                  <Button onClick={() => handleAddToWishlist(id)} className="card-button-wishlist">
                     {itemIsPresent(id) ? (
                       <span className="material-icons favorite-icon-active">
                         favorite
