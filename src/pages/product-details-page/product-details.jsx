@@ -29,11 +29,11 @@ const ProductDetails = () => {
               <div className="product-detail-right-container">
                 <h1>{product.name}</h1>
                 <p className="price">
-                  Rs {product.price}
+                  <span className="discounted-price">Rs {product.price}</span>
                   <span className="original-price">
-                    {product.originalPrice}
+                    Rs {product.originalPrice}
                   </span>
-                  10%
+                  <span className="discount-percentage">10% OFF</span>
                 </p>
                 <p className="description">{product.description}</p>
                 <div className="products-details-button-container">
@@ -46,6 +46,7 @@ const ProductDetails = () => {
                         toast.success("Added To Cart");
                       }
                     }}
+                    className="product-add-to-cart-button"
                   >
                     {itemIsPresentInCart(product.id)
                       ? "Go To Cart"
@@ -54,10 +55,16 @@ const ProductDetails = () => {
                   <Button
                     onClick={() => {
                       if (itemIsPresent(product.id)) {
-                        dispatch({ type: "REMOVE_FROM_WISHLIST", payload: product.id });
+                        dispatch({
+                          type: "REMOVE_FROM_WISHLIST",
+                          payload: product.id,
+                        });
                         toast.success("Item Removed From Wishlist");
                       } else {
-                        dispatch({ type: "ADD_TO_WISHLIST", payload: product.id });
+                        dispatch({
+                          type: "ADD_TO_WISHLIST",
+                          payload: product.id,
+                        });
                         toast.success("Added To Wishlist");
                       }
                     }}

@@ -21,22 +21,20 @@
   justify-content: center;
   align-items: center;
   gap: 1em;
-  border: 1px solid rgb(197, 135, 135);
+  border: 1px solid rgb(212, 206, 206);
   margin-right: 2em;
-  height: 30em;
+  height:20em;
   width: 20em;
   margin-top: 3em;
   position: fixed;
   right: 0;
   background-color: var(--secondary-color);
-  /* box-shadow: var(--shadow-elevation-low); */
 }
 .proceed-to-payment-container > p {
   font-size: 20px;
 }
 .button-proceed-to-payment{
   padding:1rem 2rem;
-  /* background-color: red; */
 }
 .button-clear-cart{
   padding:1rem 2rem;
@@ -90,7 +88,8 @@
   margin-inline: 20em;
   width: 40em;
   height: 15em;
-  -webkit-box-shadow: 10px 10px 79px -40px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 79px -40px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 79px -40px rgba(0, 0, 0, 0.75);
+}
+
+.go-to-shop-button{
+  padding: 1rem 1.5rem;
 }

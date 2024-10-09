@@ -12,12 +12,17 @@ const Wishlist = () => {
   return (
     <div className="wishlist-container">
       <div className="wishlist-count">
-        <h3>items : {state.wishlist.length}</h3>
+        <h3>Items : {state.wishlist.length}</h3>
       </div>
       {state.wishlist.length === 0 ? (
         <div className="wishlist-empty-container">
           <h1>Your Wishlist is Empty</h1>
-          <Button onClick={() => navigate("/shop")}>Go To Shop</Button>
+          <Button
+            onClick={() => navigate("/shop")}
+            className="wishlist-go-to-cart-button"
+          >
+            Go To Shop
+          </Button>
         </div>
       ) : (
         <div className="wishlist-items-container">
@@ -44,6 +49,7 @@ const Wishlist = () => {
                           toast.success("Added To Cart");
                         }
                       }}
+                      className="wishlist-go-to-cart-button"
                     >
                       {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
                     </Button>
