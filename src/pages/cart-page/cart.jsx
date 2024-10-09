@@ -11,6 +11,12 @@ const Cart = () => {
       return arrItem.id === id;
     });
   }
+  function HandleProceedToPayment() {
+    // console.log("hey");
+    toast.success("Order Placed");
+    dispatch({ type: "CLEAR_CART" });
+    navigate("/");
+  }
 
   return (
     <div className="cart-container">
@@ -18,7 +24,12 @@ const Cart = () => {
         {state.cart.length === 0 ? (
           <div className="empty-container-notice">
             <h1>Your Cart is Empty</h1>
-            <Button onClick={() => navigate("/shop")}>Go To Shop</Button>
+            <Button
+              onClick={() => navigate("/shop")}
+              className="go-to-shop-button"
+            >
+              Go To Shop
+            </Button>
           </div>
         ) : (
           state.cart.map(
@@ -91,30 +102,32 @@ const Cart = () => {
           )
         )}
       </div>
-      <div className="proceed-to-payment-container">
-        <p>
-          Sub Total (<span>{state.cart.length}</span>)items: Rs {subTotal}
-        </p>
-        <Button
-          // onClick={() => console.log("hey")}
-          className="button-proceed-to-payment"
-        >
-          Proceed To payment
-        </Button>
-        <Button
-          onClick={() => {
-            if (state.cart.length > 0) {
-              dispatch({ type: "CLEAR_CART" });
-              toast.success("Cart Items Removed!");
-            } else if (state.cart.length === 0) {
-              toast.success("Cart is Empty");
-            }
-          }}
-          className="button-clear-cart"
-        >
-          Clear Your Cart
-        </Button>
-      </div>
+      {state.cart.length !== 0 && (
+        <div className="proceed-to-payment-container">
+          <p>
+            Sub Total (<span>{state.cart.length}</span>)items: Rs {subTotal}
+          </p>
+          <Button
+            className="button-proceed-to-payment"
+            onClick={() => HandleProceedToPayment()}
+          >
+            Proceed To payment
+          </Button>
+          <Button
+            onClick={() => {
+              if (state.cart.length > 0) {
+                dispatch({ type: "CLEAR_CART" });
+                toast.success("Cart Items Removed!");
+              } else if (state.cart.length === 0) {
+                toast.success("Cart is Empty");
+              }
+            }}
+            className="button-clear-cart"
+          >
+            Clear Your Cart
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
