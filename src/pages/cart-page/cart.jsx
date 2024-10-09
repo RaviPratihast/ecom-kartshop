@@ -95,7 +95,12 @@ const Cart = () => {
         <p>
           Sub Total (<span>{state.cart.length}</span>)items: Rs {subTotal}
         </p>
-        <Button onClick={() => console.log("hey")}>Proceed To payment</Button>
+        <Button
+          // onClick={() => console.log("hey")}
+          className="button-proceed-to-payment"
+        >
+          Proceed To payment
+        </Button>
         <Button
           onClick={() => {
             if (state.cart.length > 0) {
@@ -105,6 +110,7 @@ const Cart = () => {
               toast.success("Cart is Empty");
             }
           }}
+          className="button-clear-cart"
         >
           Clear Your Cart
         </Button>
