@@ -149,7 +149,7 @@ const Shop = () => {
 
                     {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
                   </Button> */}
-                  <Button onClick={() => handleAddToCart(id)}>
+                  <Button onClick={() => handleAddToCart(id)} className="card-button">
                     {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
                   </Button>
 

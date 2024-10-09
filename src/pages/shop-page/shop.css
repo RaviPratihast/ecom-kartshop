@@ -184,3 +184,14 @@ select {
 .favorite-icon-selected {
   color: red;
 }
+
+.card-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3rem;
+  
+}
+.card-button:hover{
+  border: 1px solid black;
+}
