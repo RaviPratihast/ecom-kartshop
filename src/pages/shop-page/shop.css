@@ -170,11 +170,11 @@ select {
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.2em;
+  gap: 3em;
+  padding-left: 5rem;
   margin-top: 0.9rem;
   margin-left: 24rem;
   margin-bottom: 2%;
-  border-radius: 0.3rem;
 }
 .add-cart-wishlist-container {
   display: flex;
