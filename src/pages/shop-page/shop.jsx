@@ -24,7 +24,6 @@ const Shop = () => {
 
   function handleAddToCart(id) {
     if (stateAuth.loggedIn) {
-      // If the user is logged in, add the item to the cart
       if (itemIsPresentInCart(id)) {
         navigate("/cart");
       } else {
@@ -32,10 +31,24 @@ const Shop = () => {
         toast.success("Added To Cart");
       }
     } else {
-      // If not logged in, redirect to login page
       navigate("/login");
     }
   }
+
+  function handleAddToWishlist(id) {
+    if (stateAuth.loggedIn) {
+      if (itemIsPresent(id)) {
+        dispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
+        toast.success("Item Removed From Wishlist");
+      } else {
+        dispatch({ type: "ADD_TO_WISHLIST", payload: id });
+        toast.success("Added To Wishlist");
+      }
+    } else {
+      navigate("/login");
+    }
+  }
+
   return (
     <div className="filter-product-container">
       <div className="filters-container">
@@ -140,7 +153,7 @@ const Shop = () => {
                     {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
                   </Button>
 
-                  <Button
+                  {/* <Button
                     onClick={() => {
                       if (itemIsPresent(id)) {
                         dispatch({ type: "REMOVE_FROM_WISHLIST", payload: id });
@@ -151,6 +164,18 @@ const Shop = () => {
                       }
                     }}
                   >
+                    {itemIsPresent(id) ? (
+                      <span className="material-icons favorite-icon-active">
+                        favorite
+                      </span>
+                    ) : (
+                      <span className="material-icons favorite-icon">
+                        favorite
+                      </span>
+                    )}
+                  </Button> */}
+
+                  <Button onClick={() => handleAddToWishlist(id)}>
                     {itemIsPresent(id) ? (
                       <span className="material-icons favorite-icon-active">
                         favorite
