@@ -2,10 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useProduct } from "../../context/ecom-context";
 import { Button, Card } from "../../components/component-index";
+import { useAuth } from "../../context/auth-context";
 import { toast } from "react-toastify";
 const Shop = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useProduct();
+  const { stateAuth } = useAuth();
   function itemIsPresent(id) {
     return state.wishlist.some((arrItem) => {
       return arrItem.id === id;
@@ -18,6 +20,21 @@ const Shop = () => {
   function handleChangeInput(e) {
     const eventTargetValue = e.target.value;
     dispatch({ type: "SET_RANGE", payload: eventTargetValue });
+  }
+
+  function handleAddToCart(id) {
+    if (stateAuth.loggedIn) {
+      // If the user is logged in, add the item to the cart
+      if (itemIsPresentInCart(id)) {
+        navigate("/cart");
+      } else {
+        dispatch({ type: "ADD_TO_CART", payload: id });
+        toast.success("Added To Cart");
+      }
+    } else {
+      // If not logged in, redirect to login page
+      navigate("/login");
+    }
   }
   return (
     <div className="filter-product-container">
@@ -106,7 +123,7 @@ const Shop = () => {
                 label="product"
               >
                 <div className="add-cart-wishlist-container">
-                  <Button
+                  {/* <Button
                     onClick={() => {
                       if (itemIsPresentInCart(id)) {
                         navigate("/cart");
@@ -116,6 +133,10 @@ const Shop = () => {
                       }
                     }}
                   >
+
+                    {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
+                  </Button> */}
+                  <Button onClick={() => handleAddToCart(id)}>
                     {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
                   </Button>
 
