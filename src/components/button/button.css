@@ -6,7 +6,7 @@ button {
   border: 1px solid black;
   border-radius: 0.2em;
   cursor: pointer;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
   color: var(--secondary-color);
   background-color:var(--primary-color) ;
 }

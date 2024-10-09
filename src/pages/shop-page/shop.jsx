@@ -149,7 +149,7 @@ const Shop = () => {
 
                     {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
                   </Button> */}
-                  <Button onClick={() => handleAddToCart(id)}>
+                  <Button onClick={() => handleAddToCart(id)} className="card-button-add">
                     {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
                   </Button>
 
@@ -175,7 +175,7 @@ const Shop = () => {
                     )}
                   </Button> */}
 
-                  <Button onClick={() => handleAddToWishlist(id)}>
+                  <Button onClick={() => handleAddToWishlist(id)} className="card-button-wishlist">
                     {itemIsPresent(id) ? (
                       <span className="material-icons favorite-icon-active">
                         favorite
