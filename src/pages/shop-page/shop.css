@@ -1,27 +1,31 @@
 .filter-product-container {
   display: flex;
   margin-top: 5em;
+  
 }
 .filters-container {
   display: flex;
   flex-direction: column;
-  height: 35em;
-  width: 20em;
-  margin-top: 1em;
-  margin-left: 2em;
+  height: 100%;
+  /* width: 20em; */
+  /* margin-top: 1em; */
+  /* margin-left: 1em; */
   padding: 0.8rem;
-  box-shadow: var(--shadow-elevation-low);
+  /* box-shadow: var(--shadow-elevation-low); */
 
   position: fixed;
   left: 0;
-  border-radius: 10px;
-  border: 0.1em dotted var(--grey-color);
+  top: 4rem;
+  /* border-radius: 10px; */
+  border-right: 1px solid  var(--grey-color);
+  /* border: 1px solid red; */
+
 }
 
 .filters-container > .price-filter,
 .sort-filter,
 .include-out-of-stock-filter {
-  margin: 1.5em;
+  margin: 1.5em 0;
   display: flex;
   flex-direction: column;
 }
@@ -36,7 +40,7 @@
 .price-filter {
   display: flex;
   justify-content: flex-start;
-  margin-left: 0;
+  /* margin-left: 0; */
 }
 
 .price-filter-input-container {
@@ -44,6 +48,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+  /* border: 1px solid red; */
 }
 input {
   width: 100%;
@@ -52,40 +57,40 @@ input {
 input::-webkit-slider-runnable-track {
   background: #ffffff;
   border: 0.1em solid #010101;
-  border-radius: 1.3px;
+  border-radius: 5.3px;
   width: 100%;
   height: 0.5em;
   cursor: pointer;
 }
 input::-webkit-slider-thumb {
   margin-top: -5px;
-  width: 10px;
-  height: 17px;
+  width: 15px;
+  height: 15px;
   background: #090005;
   border: 1px solid #000000;
-  border-radius: 42px;
+  border-radius: 70px;
   cursor: pointer;
   -webkit-appearance: none;
 }
 input:focus::-webkit-slider-runnable-track {
-  background: #ffffff;
+  background: #080808;
 }
 input::-moz-range-track {
-  background: #ffffff;
-  border-radius: 1.3px;
+  background: #0e0d0d;
+  border-radius: .3px;
   width: 100%;
   height: 8.4px;
   cursor: pointer;
 }
-input::-moz-range-thumb {
+/* input::-moz-range-thumb {
   width: 10px;
   height: 18px;
   background: #090005;
   border: 1px solid #000000;
   border-radius: 42px;
   cursor: pointer;
-}
-input::-ms-track {
+} */
+/* input::-ms-track {
   background: transparent;
   border-color: transparent;
   border-width: 4.8px 0;
@@ -93,18 +98,18 @@ input::-ms-track {
   width: 100%;
   height: 8.4px;
   cursor: pointer;
-}
-input::-ms-fill-lower {
+} */
+/* input::-ms-fill-lower {
   background: #ffffff;
   border: 0.2px solid #010101;
   border-radius: 2.6px;
-}
-input::-ms-fill-upper {
+} */
+/* input::-ms-fill-upper {
   background: #ffffff;
   border: 0.2px solid #010101;
   border-radius: 2.6px;
-}
-input::-ms-thumb {
+} */
+/* input::-ms-thumb {
   width: 10px;
   height: 18px;
   background: #090005;
@@ -112,10 +117,10 @@ input::-ms-thumb {
   border-radius: 42px;
   cursor: pointer;
   margin-top: 0px;
-}
-input:focus::-ms-fill-lower {
+} */
+/* input:focus::-ms-fill-lower {
   background: #ffffff;
-}
+} */
 
 .price-filter-input-container > .range-initials {
   display: flex;

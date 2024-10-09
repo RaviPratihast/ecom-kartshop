@@ -52,6 +52,8 @@ const Shop = () => {
   return (
     <div className="filter-product-container">
       <div className="filters-container">
+
+        {/* filter */}
         <div className="filters">
           <div className="heading-filters">
             <h3>Filters</h3>
