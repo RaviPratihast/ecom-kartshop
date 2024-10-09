@@ -57,6 +57,11 @@
   font-weight: 400;
 }
 
+.button-getting-started{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 @media screen and (max-width: 850px) {
   .home-wrapper {
     flex-direction: column;

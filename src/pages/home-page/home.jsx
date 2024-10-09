@@ -30,7 +30,12 @@ const Home = () => {
             <h1>Kartshop</h1>
             <p>Shop everything you want</p>
           </div>
-          <Button onClick={() => navigate("/shop")}>Explore more</Button>
+          <Button
+            onClick={() => navigate("/shop")}
+            className="button-getting-started"
+          >
+            Explore more
+          </Button>
         </div>
 
         <div className="home-image">
