@@ -66,7 +66,6 @@
 .icon {
   color: var(--primary-color);
   cursor: pointer;
-  /* padding-right: 1em; */
   font-size: 1.9rem;
 }
 .nav-login-logout {

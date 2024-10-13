@@ -12,7 +12,6 @@ const Cart = () => {
     });
   }
   function HandleProceedToPayment() {
-    // console.log("hey");
     toast.success("Order Placed");
     dispatch({ type: "CLEAR_CART" });
     navigate("/");

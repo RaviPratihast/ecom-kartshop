@@ -60,7 +60,7 @@ const ProductDetails = () => {
 
                   <Button
                     onClick={() => {
-                      if (!state.isLoggedIn) {
+                      if (!stateAuth.loggedIn) {
                         navigate("/login");
                         toast.info(
                           "Please log in to add items to the wishlist"
