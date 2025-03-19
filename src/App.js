@@ -23,7 +23,7 @@ import "react-toastify/dist/ReactToastify.css";
 import RequiresAuth from "./requiresAuth";
 
 function App() {
-  const { dispatch } = useProduct();
+  const { state, dispatch } = useProduct();
   const { stateAuth, dispatchAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -103,7 +103,9 @@ function App() {
                     <i className="material-icons icon-shop icon">
                       shopping_cart
                     </i>
-                    <div className="badge"></div>
+                    {state.cart.length !== 0 && (
+                      <div className="badge">{state.cart.length}</div>
+                    )}
                   </div>
                 </NavLink>
               </>
