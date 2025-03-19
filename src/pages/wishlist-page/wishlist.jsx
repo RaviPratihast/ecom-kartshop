@@ -11,9 +11,6 @@ const Wishlist = () => {
   }
   return (
     <div className="wishlist-container">
-      <div className="wishlist-count">
-        <h3>Items : {state.wishlist.length}</h3>
-      </div>
       {state.wishlist.length === 0 ? (
         <div className="wishlist-empty-container">
           <h1>Your Wishlist is Empty</h1>
