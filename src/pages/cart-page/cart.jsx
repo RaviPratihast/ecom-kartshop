@@ -14,7 +14,7 @@ const Cart = () => {
   function HandleProceedToPayment() {
     toast.success("Order Placed");
     dispatch({ type: "CLEAR_CART" });
-    navigate("/");
+    navigate("/shop");
   }
 
   return (
