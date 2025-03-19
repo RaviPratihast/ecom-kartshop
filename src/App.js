@@ -96,7 +96,14 @@ function App() {
                   <i className="material-icons icon">explore</i>
                 </NavLink>
                 <NavLink style={getActiveStyle} to="/wishlist">
-                  <i className="material-icons icon">favorite</i>
+                  <div className="icon-container">
+                    <i className="material-icons icon">favorite</i>
+                    {state.wishlist.length !== 0 && (
+                      <div className="badge">
+                        {state.wishlist.length}
+                      </div>
+                    )}
+                  </div>
                 </NavLink>
                 <NavLink style={getActiveStyle} to="/cart">
                   <div className="icon-container">
