@@ -5,6 +5,7 @@ const useAuth = () => useContext(AuthContext);
 
 const initialState = {
   loggedIn: false,
+  isGuestUser: false,
   users: [
     { user: "Ravi", password: "123" },
     { user: "a", password: "1" },

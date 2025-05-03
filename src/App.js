@@ -21,6 +21,15 @@ import { useProduct } from "./context/ecom-context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RequiresAuth from "./requiresAuth";
+import { FiMenu, FiX } from "react-icons/fi";
+import {
+  FiShoppingCart,
+  FiHeart,
+  FiCompass,
+  FiSearch,
+  FiLogIn,
+  FiLogOut,
+} from "react-icons/fi";
 
 function App() {
   const { state, dispatch } = useProduct();
@@ -28,6 +37,7 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const [search, setSearch] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isHome = location.pathname === "/shop";
   const isLandingPage = location.pathname === "/";
@@ -54,13 +64,17 @@ function App() {
     dispatch({ type: "SEARCH", payload: search });
   }
 
-  function handleLoginLogout(event) {
-    if (event.target.innerHTML === "logout") {
+  function handleLoginLogout() {
+    if (stateAuth.loggedIn) {
+      // Clear cart and wishlist if it's a guest user
+      if (stateAuth.isGuestUser) {
+        dispatch({ type: "CLEAR_CART" });
+        dispatch({ type: "REMOVE_ALL_FROM_WISHLIST" });
+      }
       dispatchAuth({ type: "USER_LOGOUT" });
-      navigate("/login");
-      toast.success("Logged Out");
-    }
-    if (event.target.innerHTML === "login") {
+      navigate("/");
+      toast.success("Logged Out Successfully");
+    } else {
       navigate("/login");
     }
   }
@@ -80,12 +94,10 @@ function App() {
                 value={search}
                 onChange={(event) => handleSearchInput(event)}
               />
-              <i
-                className="material-icons search-icon"
+              <FiSearch
+                className="search-icon"
                 onClick={() => handleSearchClick()}
-              >
-                search
-              </i>
+              />
             </div>
           )}
 
@@ -93,23 +105,19 @@ function App() {
             {!isLandingPage && (
               <>
                 <NavLink style={getActiveStyle} to="/shop">
-                  <i className="material-icons icon">explore</i>
+                  <FiCompass className="icon" />
                 </NavLink>
                 <NavLink style={getActiveStyle} to="/wishlist">
                   <div className="icon-container">
-                    <i className="material-icons icon">favorite</i>
+                    <FiHeart className="icon" />
                     {state.wishlist.length !== 0 && (
-                      <div className="badge">
-                        {state.wishlist.length}
-                      </div>
+                      <div className="badge">{state.wishlist.length}</div>
                     )}
                   </div>
                 </NavLink>
                 <NavLink style={getActiveStyle} to="/cart">
                   <div className="icon-container">
-                    <i className="material-icons icon-shop icon">
-                      shopping_cart
-                    </i>
+                    <FiShoppingCart className="icon" />
                     {state.cart.length !== 0 && (
                       <div className="badge">{state.cart.length}</div>
                     )}
@@ -117,16 +125,77 @@ function App() {
                 </NavLink>
               </>
             )}
-            <div
-              className="nav-login-logout"
-              onClick={(event) => handleLoginLogout(event)}
-            >
+            <div className="nav-login-logout" onClick={handleLoginLogout}>
               {stateAuth.loggedIn ? (
-                <i className="material-icons icon">logout</i>
+                <FiLogOut className="icon" />
               ) : (
-                <i className="material-icons icon">login</i>
+                <FiLogIn className="icon" />
               )}
             </div>
+          </div>
+
+          {/* Hamburger Menu Icon */}
+          <div
+            className="hamburger-menu"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <FiX className="icon" />
+            ) : (
+              <FiMenu className="icon" />
+            )}
+          </div>
+
+          {/* Mobile Menu */}
+          <div className={`mobile-menu ${isMobileMenuOpen ? "active" : ""}`}>
+            {!isLandingPage && (
+              <>
+                <NavLink to="/shop" onClick={() => setIsMobileMenuOpen(false)}>
+                  <FiCompass className="icon" />
+                  <span>Explore</span>
+                </NavLink>
+                <NavLink
+                  to="/wishlist"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <div className="icon-container">
+                    <FiHeart className="icon" />
+                    {state.wishlist.length !== 0 && (
+                      <div className="badge">{state.wishlist.length}</div>
+                    )}
+                  </div>
+                  <span>Wishlist</span>
+                </NavLink>
+                <NavLink to="/cart" onClick={() => setIsMobileMenuOpen(false)}>
+                  <div className="icon-container">
+                    <FiShoppingCart className="icon" />
+                    {state.cart.length !== 0 && (
+                      <div className="badge">{state.cart.length}</div>
+                    )}
+                  </div>
+                  <span>Cart</span>
+                </NavLink>
+                <div
+                  className="nav-login-logout"
+                  onClick={() => {
+                    handleLoginLogout();
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  {stateAuth.loggedIn ? (
+                    <>
+                      <FiLogOut className="icon" />
+                      <span>Logout</span>
+                    </>
+                  ) : (
+                    <>
+                      <FiLogIn className="icon" />
+                      <span>Login</span>
+                    </>
+                  )}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </nav>

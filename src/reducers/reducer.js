@@ -79,6 +79,11 @@ export function reducer(state, action) {
           (wishlistItem) => wishlistItem.id !== action.payload
         ),
       };
+    case "REMOVE_ALL_FROM_WISHLIST":
+      return {
+        ...state,
+        wishlist: [],
+      };
 
     case "HIGH_TO_LOW":
       return {

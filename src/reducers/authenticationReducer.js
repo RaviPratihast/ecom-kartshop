@@ -1,20 +1,22 @@
 function authenticationReducer(stateAuth, actionAuth) {
-
   switch (actionAuth.type) {
     case "USER_LOGGED_IN":
       return {
         ...stateAuth,
-        loggedIn: !stateAuth.loggedIn,
+        loggedIn: true,
+        isGuestUser: false,
       };
     case "GUEST_USER_LOGGED_IN":
       return {
         ...stateAuth,
-        loggedIn: !stateAuth.loggedIn,
+        loggedIn: true,
+        isGuestUser: true,
       };
     case "USER_LOGOUT":
       return {
         ...stateAuth,
-        loggedIn: !stateAuth.loggedIn,
+        loggedIn: false,
+        isGuestUser: false,
       };
     case "SIGN_IN":
       return {

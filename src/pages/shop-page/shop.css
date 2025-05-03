@@ -1,9 +1,10 @@
 .filter-product-container {
   display: flex;
   margin-top: 5em;
-
 }
+
 .filters-container {
+  border: 1px solid red;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -13,6 +14,8 @@
   left: 0;
   top: 4rem;
   border-right: 1px solid var(--grey-color);
+  background-color: white;
+  z-index: 99;
 }
 
 .filters-container > .price-filter,
@@ -157,4 +160,78 @@ select {
 
 .card-button-wishlist:hover {
   border: 1px solid black;
+}
+
+/* Media Queries for Mobile Responsive Design */
+@media screen and (max-width: 1024px) {
+  .filters-container {
+    width: 16em;
+  }
+
+  .products-container {
+    margin-left: 20rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .filter-product-container {
+    flex-direction: column;
+    margin-top: 6em;
+  }
+
+  .filters-container {
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--grey-color);
+    padding: 1rem 2rem;
+  }
+
+  .products-container {
+    margin: 1rem auto;
+    padding: 0 1rem;
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .filters {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .price-filter,
+  .sort-filter,
+  .rating-filter-container {
+    margin: 1rem 0;
+  }
+
+  .heading-filters {
+    margin-bottom: 1rem;
+  }
+
+  .sort-filter-button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .sort-filter-button-container button {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .filters-container {
+    padding: 1rem;
+  }
+
+  .products-container {
+    gap: 2em;
+  }
+
+  .sort-filter-button-container {
+    flex-direction: column;
+  }
 }
