@@ -35,31 +35,66 @@ const Login = () => {
     toast.success("Welcome,Guest");
   }
   return (
-    <div className="Login-container">
-      <h2>Log In</h2>
-      <div className="input-container">
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
+    <section className="login-page">
+      <div className="login-form-panel">
+        <div className="login-form-card">
+          <div className="auth-heading">
+            <h2>Welcome back!</h2>
+            <p>Log in to continue shopping and manage your cart.</p>
+          </div>
+          <div className="auth-input-container">
+            <label htmlFor="login-username">Username</label>
+            <input
+              id="login-username"
+              type="text"
+              placeholder="Enter your username"
+              autoComplete="username"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
+            <label htmlFor="login-password">Password</label>
+            <input
+              id="login-password"
+              type="password"
+              placeholder="Enter your password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </div>
+          <div className="auth-button-container">
+            <Button onClick={() => handleLogin()} size="lg">
+              Log In
+            </Button>
+            <Button onClick={() => handleGuestLogin()} variant="secondary" size="lg">
+              Guest Login
+            </Button>
+          </div>
+          <div className="auth-switch-container">
+            <p>New to Kartshop?</p>
+            <button type="button" onClick={() => navigate("/signIn")}>
+              Create account
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="login-visual-panel">
+        <img
+          className="visual-bg-art"
+          src="/image/undraw_add-to-cart_c8f2.svg"
+          alt=""
+          aria-hidden="true"
         />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
+        <div className="login-visual-overlay">
+          <h3>Shop smarter. Save faster.</h3>
+          <p>
+            Build your cart, track favorites, and check out quickly with a
+            clean shopping experience.
+          </p>
+        </div>
       </div>
-      <div className="input-button-container">
-        <Button onClick={() => handleLogin()}>Log In</Button>
-        <Button onClick={() => handleGuestLogin()}>Guest Login</Button>
-      </div>
-      <div className="have-account-login-container">
-        <p>Don't have account? </p>
-        <span onClick={() => navigate("/signIn")}>Sign In</span>
-      </div>
-    </div>
+    </section>
   );
 };
 

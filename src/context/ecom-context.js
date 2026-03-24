@@ -21,6 +21,7 @@ let initialState = {
   minPrice: 0,
   maxPrice: 6000,
   filterRating: 0,
+  sortOrder: "",
 };
 
 const ProductProvider = ({ children }) => {

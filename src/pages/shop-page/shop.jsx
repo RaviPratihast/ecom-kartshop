@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useProduct } from "../../context/ecom-context";
 import { Button, Card } from "../../components/component-index";
 import { useAuth } from "../../context/auth-context";
 import { toast } from "react-toastify";
+import { ArrowUpDown, SlidersHorizontal } from "lucide-react";
+
 const Shop = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useProduct();
   const { stateAuth } = useAuth();
+  const [mobilePanel, setMobilePanel] = useState(null);
+
   function itemIsPresent(id) {
     return state.wishlist.some((arrItem) => {
       return arrItem.id === id;
@@ -18,8 +22,13 @@ const Shop = () => {
     return state.cart.some((cartItem) => cartItem.id === id);
   }
   function handleChangeInput(e) {
-    const eventTargetValue = e.target.value;
+    const eventTargetValue = Number(e.target.value);
     dispatch({ type: "SET_RANGE", payload: eventTargetValue });
+  }
+
+  function handleSort(sortType) {
+    dispatch({ type: sortType });
+    setMobilePanel(null);
   }
 
   function handleAddToCart(id) {
@@ -52,72 +61,133 @@ const Shop = () => {
   return (
     <div className="filter-product-container">
       <div className="filters-container">
-        <div className="filters">
-          <div className="heading-filters">
-            <h3>Filters</h3>
-
-            <Button onClick={() => dispatch({ type: "CLEAR_FILTERS" })}>
-              Clear
-            </Button>
-          </div>
-        </div>
-        <div className="price-filter">
-          <h4>Price Range</h4>
-          <div className="price-filter-input-container">
-            <span className="range-initials">{state.minPrice}</span>
-            <input
-              className="custom-range"
-              type="range"
-              min={0}
-              max={6000}
-              step={1}
-              value={state.maxPrice}
-              onChange={handleChangeInput}
-            />
-            <span className="range-finals">{state.maxPrice}</span>
-          </div>
-        </div>
-        <div className="sort-filter">
-          <label>Sort By</label>
-          <div className="sort-filter-button-container">
-            <Button onClick={() => dispatch({ type: "HIGH_TO_LOW" })}>
-              Price-High to low
-            </Button>
-            <Button
-              className="card-add-to-cart-button sort-button"
-              onClick={() => dispatch({ type: "LOW_TO_HIGH" })}
-            >
-              Price-Low to high
-            </Button>
-          </div>
-        </div>
-        <div className="rating-filter-container">
-          <label className="label-filter-rating" htmlFor="rating-filter">
-            Filter by Rating
-          </label>
-          <select
-            className="rating-filter"
-            value={state.filterRating}
-            onChange={(event) =>
-              dispatch({
-                type: "FILTER_BY_RATING",
-                payload: parseFloat(event.target.value),
-              })
+        <div className="mobile-filter-toolbar">
+          <button
+            type="button"
+            className={`mobile-toolbar-button ${
+              mobilePanel === "sort" ? "active" : ""
+            }`}
+            onClick={() =>
+              setMobilePanel((prev) => (prev === "sort" ? null : "sort"))
             }
           >
-            <option className="option-selection" value="0">
-              All
-            </option>
-            <option className="option-selection" value="2">
-              2 Stars and Above
-            </option>
-            <option className="option-selection" value="3">
-              3 Stars and Above
-            </option>
-            <option className="option-selection" value="4">
-              4 Stars and Above
-            </option>
-          </select>
+            <ArrowUpDown size={16} />
+            Sort
+          </button>
+          <button
+            type="button"
+            className={`mobile-toolbar-button ${
+              mobilePanel === "filters" ? "active" : ""
+            }`}
+            onClick={() =>
+              setMobilePanel((prev) => (prev === "filters" ? null : "filters"))
+            }
+          >
+            <SlidersHorizontal size={16} />
+            Filter
+          </button>
+        </div>
+
+        <div
+          className={`mobile-panel mobile-panel-sort ${
+            mobilePanel === "sort" ? "open" : ""
+          }`}
+        >
+          <div className="sort-filter">
+            <label>Sort By</label>
+            <div className="sort-filter-button-container">
+              <Button
+                onClick={() => handleSort("HIGH_TO_LOW")}
+                variant="secondary"
+                className={
+                  `sort-button ${
+                    state.sortOrder === "HIGH_TO_LOW" ? "sort-button-active" : ""
+                  }`
+                }
+              >
+                Price-High to low
+              </Button>
+              <Button
+                onClick={() => handleSort("LOW_TO_HIGH")}
+                variant="secondary"
+                className={
+                  `sort-button ${
+                    state.sortOrder === "LOW_TO_HIGH" ? "sort-button-active" : ""
+                  }`
+                }
+              >
+                Price-Low to high
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className={`mobile-panel mobile-panel-filters ${
+            mobilePanel === "filters" ? "open" : ""
+          }`}
+        >
+          <div className="filters">
+            <div className="heading-filters">
+              <h3>Filters</h3>
+
+              <Button
+                onClick={() => {
+                  dispatch({ type: "CLEAR_FILTERS" });
+                  setMobilePanel(null);
+                }}
+                variant="ghost"
+                size="sm"
+              >
+                Clear
+              </Button>
+            </div>
+            <div className="price-filter">
+              <h4>Price Range</h4>
+              <div className="price-filter-input-container">
+                <span className="range-initials">{state.minPrice}</span>
+                <input
+                  className="custom-range"
+                  type="range"
+                  min={0}
+                  max={6000}
+                  step={1}
+                  value={state.maxPrice}
+                  onChange={handleChangeInput}
+                />
+                <span className="range-finals">{state.maxPrice}</span>
+              </div>
+            </div>
+            <div className="rating-filter-container">
+              <label className="label-filter-rating" htmlFor="rating-filter">
+                Filter by Rating
+              </label>
+              <select
+                className="rating-filter"
+                value={state.filterRating}
+                onChange={(event) => {
+                  dispatch({
+                    type: "FILTER_BY_RATING",
+                    payload: parseFloat(event.target.value),
+                  });
+                  setMobilePanel(null);
+                }}
+              >
+                <option className="option-selection" value="0">
+                  All
+                </option>
+                <option className="option-selection" value="2">
+                  2 Stars and Above
+                </option>
+                <option className="option-selection" value="3">
+                  3 Stars and Above
+                </option>
+                <option className="option-selection" value="4">
+                  4 Stars and Above
+                </option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -139,6 +209,7 @@ const Shop = () => {
                   <Button
                     onClick={() => handleAddToCart(id)}
                     className="card-button-add"
+                    size="sm"
                   >
                     {itemIsPresentInCart(id) ? "Go To Cart" : "Add To Cart"}
                   </Button>
@@ -146,6 +217,8 @@ const Shop = () => {
                   <Button
                     onClick={() => handleAddToWishlist(id)}
                     className="card-button-wishlist"
+                    size="sm"
+                    variant="secondary"
                   >
                     {itemIsPresent(id) ? (
                       <span className="material-icons favorite-icon-active">

@@ -88,12 +88,14 @@ export function reducer(state, action) {
     case "HIGH_TO_LOW":
       return {
         ...state,
-        product: state.product.sort((a, b) => b.price - a.price),
+        product: [...state.product].sort((a, b) => b.price - a.price),
+        sortOrder: "HIGH_TO_LOW",
       };
     case "LOW_TO_HIGH":
       return {
         ...state,
-        product: state.product.sort((a, b) => a.price - b.price),
+        product: [...state.product].sort((a, b) => a.price - b.price),
+        sortOrder: "LOW_TO_HIGH",
       };
     case "SET_RANGE":
       if (state.ratingFilterApplied) {
@@ -147,6 +149,7 @@ export function reducer(state, action) {
         maxPrice: 6000,
         rangeFilterApplied: false,
         ratingFilterApplied: false,
+        sortOrder: "",
       };
     case "SEARCH":
       return {

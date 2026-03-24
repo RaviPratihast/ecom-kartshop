@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   NavLink,
   Routes,
@@ -21,15 +21,17 @@ import { useProduct } from "./context/ecom-context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RequiresAuth from "./requiresAuth";
-import { FiMenu, FiX } from "react-icons/fi";
 import {
-  FiShoppingCart,
-  FiHeart,
-  FiCompass,
-  FiSearch,
-  FiLogIn,
-  FiLogOut,
-} from "react-icons/fi";
+  Compass,
+  Heart,
+  LogIn,
+  LogOut,
+  Menu,
+  Search,
+  ShoppingCart,
+  Store,
+  X,
+} from "lucide-react";
 
 function App() {
   const { state, dispatch } = useProduct();
@@ -41,18 +43,13 @@ function App() {
 
   const isHome = location.pathname === "/shop";
   const isLandingPage = location.pathname === "/";
+  const isAuthPage =
+    location.pathname === "/login" || location.pathname === "/signIn";
 
-  const getActiveStyle = ({ isActive }) => {
-    return {
-      display: "flex",
-      justifyContent: "center",
-      color: "white",
-      textDecoration: isActive ? "underline" : "none",
-      padding: "0.3em",
-      fontSize: "1.2rem",
-      textUnderlineOffset: "0.4em",
-    };
-  };
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   function handleSearchInput(event) {
     if (event.target.value === "") {
       dispatch({ type: "RESET_SEARCH" });
@@ -60,7 +57,7 @@ function App() {
     setSearch(event.target.value);
   }
 
-  function handleSearchClick(event) {
+  function handleSearchClick() {
     dispatch({ type: "SEARCH", payload: search });
   }
 
@@ -83,41 +80,66 @@ function App() {
       <nav className="App-header">
         <div className="nav-container">
           <div className="nav-left">
-            <h1> Kartshop</h1>
+            <Store className="brand-icon" />
+            <h1>Kartshop</h1>
           </div>
 
           {isHome && (
-            <div className="nav-search">
+            <div className="nav-search" role="search">
               <input
                 className="input nav-search-input"
-                placeholder="Search.."
+                placeholder="Search products"
                 value={search}
                 onChange={(event) => handleSearchInput(event)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    handleSearchClick();
+                  }
+                }}
               />
-              <FiSearch
-                className="search-icon"
+              <button
+                type="button"
+                className="search-button"
                 onClick={() => handleSearchClick()}
-              />
+                aria-label="search products"
+              >
+                <Search className="search-icon" />
+              </button>
             </div>
           )}
 
           <div className="navbar-right">
-            {!isLandingPage && (
+            {!isLandingPage && !isAuthPage && (
               <>
-                <NavLink style={getActiveStyle} to="/shop">
-                  <FiCompass className="icon" />
+                <NavLink
+                  className={({ isActive }) =>
+                    `nav-icon-link ${isActive ? "nav-icon-link-active" : ""}`
+                  }
+                  to="/shop"
+                >
+                  <Compass className="icon" />
                 </NavLink>
-                <NavLink style={getActiveStyle} to="/wishlist">
+                <NavLink
+                  className={({ isActive }) =>
+                    `nav-icon-link ${isActive ? "nav-icon-link-active" : ""}`
+                  }
+                  to="/wishlist"
+                >
                   <div className="icon-container">
-                    <FiHeart className="icon" />
+                    <Heart className="icon" />
                     {state.wishlist.length !== 0 && (
                       <div className="badge">{state.wishlist.length}</div>
                     )}
                   </div>
                 </NavLink>
-                <NavLink style={getActiveStyle} to="/cart">
+                <NavLink
+                  className={({ isActive }) =>
+                    `nav-icon-link ${isActive ? "nav-icon-link-active" : ""}`
+                  }
+                  to="/cart"
+                >
                   <div className="icon-container">
-                    <FiShoppingCart className="icon" />
+                    <ShoppingCart className="icon" />
                     {state.cart.length !== 0 && (
                       <div className="badge">{state.cart.length}</div>
                     )}
@@ -125,33 +147,37 @@ function App() {
                 </NavLink>
               </>
             )}
-            <div className="nav-login-logout" onClick={handleLoginLogout}>
-              {stateAuth.loggedIn ? (
-                <FiLogOut className="icon" />
-              ) : (
-                <FiLogIn className="icon" />
-              )}
-            </div>
-          </div>
-
-          {/* Hamburger Menu Icon */}
-          <div
-            className="hamburger-menu"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <FiX className="icon" />
-            ) : (
-              <FiMenu className="icon" />
+            {!isAuthPage && (
+              <div className="nav-login-logout" onClick={handleLoginLogout}>
+                {stateAuth.loggedIn ? (
+                  <LogOut className="icon" />
+                ) : (
+                  <LogIn className="icon" />
+                )}
+              </div>
             )}
           </div>
 
+          {/* Hamburger Menu Icon */}
+          {!isLandingPage && !isAuthPage && (
+            <div
+              className="hamburger-menu"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <X className="icon" />
+              ) : (
+                <Menu className="icon" />
+              )}
+            </div>
+          )}
+
           {/* Mobile Menu */}
           <div className={`mobile-menu ${isMobileMenuOpen ? "active" : ""}`}>
-            {!isLandingPage && (
+            {!isLandingPage && !isAuthPage && (
               <>
                 <NavLink to="/shop" onClick={() => setIsMobileMenuOpen(false)}>
-                  <FiCompass className="icon" />
+                  <Compass className="icon" />
                   <span>Explore</span>
                 </NavLink>
                 <NavLink
@@ -159,7 +185,7 @@ function App() {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <div className="icon-container">
-                    <FiHeart className="icon" />
+                    <Heart className="icon" />
                     {state.wishlist.length !== 0 && (
                       <div className="badge">{state.wishlist.length}</div>
                     )}
@@ -168,7 +194,7 @@ function App() {
                 </NavLink>
                 <NavLink to="/cart" onClick={() => setIsMobileMenuOpen(false)}>
                   <div className="icon-container">
-                    <FiShoppingCart className="icon" />
+                    <ShoppingCart className="icon" />
                     {state.cart.length !== 0 && (
                       <div className="badge">{state.cart.length}</div>
                     )}
@@ -184,12 +210,12 @@ function App() {
                 >
                   {stateAuth.loggedIn ? (
                     <>
-                      <FiLogOut className="icon" />
+                      <LogOut className="icon" />
                       <span>Logout</span>
                     </>
                   ) : (
                     <>
-                      <FiLogIn className="icon" />
+                      <LogIn className="icon" />
                       <span>Login</span>
                     </>
                   )}

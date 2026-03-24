@@ -35,7 +35,7 @@ const Card = ({
             Rs <span className="sale-price">{price}</span>
           </p>
 
-          <span className="original-price">Rs {originalPrice}</span>
+          <span className="card-original-price">Rs {originalPrice}</span>
           <span className="off-percent">10% off</span>
         </div>
         <div className="buttons-add-to-cart-wish-container">{children}</div>
